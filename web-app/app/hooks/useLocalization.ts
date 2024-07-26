@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LocalizationContext } from '../_components/LocalizationProvider';
+import { LocalizationContext } from '../components/LocalizationProvider';
 
 export default function useLocalization() {
   return useContext(LocalizationContext);
