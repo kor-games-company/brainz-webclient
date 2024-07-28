@@ -14,4 +14,9 @@ export const enDictionary: Dictionary = {
   development: {
     developerPanel: 'Developer Panel',
   },
+  navigation: {
+    home: 'Home',
+    library: 'Library',
+    hub: 'Hub',
+  },
 };

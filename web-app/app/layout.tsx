@@ -9,6 +9,7 @@ import { Theme } from './theme/types';
 import { Language } from './localization/types';
 import AppContainer from './components/AppContainer';
 import { dictionaryByLang } from './localization/dictionaries/dictionaryByLang';
+import { getLangFromCookies, getThemeFromCookies } from './utils/cookies/cookies.functions';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
@@ -25,8 +26,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const theme = (cookies().get('theme')?.value ?? FALLBACK_THEME) as Theme;
-  const lang = (cookies().get('lang')?.value ?? FALLBACK_LANGUAGE) as Language;
+  const theme = getThemeFromCookies();
+  const lang = getLangFromCookies();
   const dictionary = dictionaryByLang[lang];
 
   return (

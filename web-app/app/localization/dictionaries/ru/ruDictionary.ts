@@ -14,4 +14,9 @@ export const ruDictionary: Dictionary = {
   development: {
     developerPanel: 'Панель разработчика',
   },
+  navigation: {
+    home: 'Главная',
+    library: 'Библиотека',
+    hub: 'Комнаты',
+  },
 };

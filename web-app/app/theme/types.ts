@@ -4,8 +4,8 @@ export type ThemeColors = {
   secondary: string; // Secondary brand color
   accent: string; // Accent color for highlights
   background: string; // Background color
-  textPrimary: string; // Primary text color
-  textSecondary: string; // Secondary text color
+  opposite: string; // Primary text color
+  oppositeSecondary: string; // Secondary text color
 
   success: string; // Success messages
   error: string; // Error messages

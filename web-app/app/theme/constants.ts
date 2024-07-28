@@ -8,8 +8,8 @@ export const THEMES_COLORS: Record<Theme, ThemeColors> = {
     secondary: '#252525', // Slightly lighter gray for secondary elements
     accent: '#FF6F61', // Coral for accents and highlights
     background: '#121212', // Black or very dark gray for background
-    textPrimary: '#FFFFFF', // White for primary text
-    textSecondary: '#B3B3B3', // Light gray for secondary text
+    opposite: '#FFFFFF', // White for primary text
+    oppositeSecondary: '#B3B3B3', // Light gray for secondary text
     success: '#4CAF50', // Green for success messages
     error: '#F44336', // Red for error messages
     warning: '#FF9800', // Orange for warning messages
@@ -22,8 +22,8 @@ export const THEMES_COLORS: Record<Theme, ThemeColors> = {
     secondary: '#F5F5F5', // Light gray for secondary elements
     accent: '#007BFF', // Bright blue for accents and highlights
     background: '#E0E0E0', // Light gray for background
-    textPrimary: '#000000', // Black for primary text
-    textSecondary: '#616161', // Dark gray for secondary text
+    opposite: '#000000', // Black for primary text
+    oppositeSecondary: '#616161', // Dark gray for secondary text
     success: '#4CAF50', // Green for success messages
     error: '#F44336', // Red for error messages
     warning: '#FF9800', // Orange for warning messages

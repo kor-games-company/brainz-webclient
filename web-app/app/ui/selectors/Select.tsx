@@ -44,14 +44,14 @@ function SelectInner<T>(
         onChange={(e) => handleOnChange(Number(e.target.value))}
         defaultValue={selectDefaultValue}
         value={selectValue}
-        className={clsx('w-full rounded bg-primary px-4 py-2 text-textPrimary', className)}
+        className={clsx('text-opposite w-full rounded bg-primary px-4 py-2', className)}
       >
         {optionsWithIndexes.map((option) => {
           return (
             <option
               key={option.index}
               value={option.index}
-              className="bg-secondary text-textSecondary"
+              className="text-oppositeSecondary bg-secondary"
             >
               {option.label}
             </option>

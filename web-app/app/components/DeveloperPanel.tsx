@@ -10,10 +10,10 @@ import { Language } from '../localization/types';
 import useLocalization from '../hooks/useLocalization';
 import useTheme from '../hooks/useTheme';
 
-export default function DeveloperSettings() {
+export default function DeveloperPanel() {
   const { dictionary } = useLocalization();
   return (
-    <div className="absolute bottom-[100px] left-[100px] z-50 cursor-default select-none flex-col gap-2 rounded-md bg-secondary p-4 shadow-lg">
+    <div className="absolute bottom-[100px] left-[100px] cursor-default select-none flex-col gap-2 rounded-md bg-secondary p-4 shadow-lg">
       <p className="self-center rounded-md bg-primary px-4 py-2">
         {dictionary.development.developerPanel}
       </p>
@@ -24,15 +24,8 @@ export default function DeveloperSettings() {
 }
 
 function ThemeSwitcher() {
-  const [cookies, setCookies] = useCookies();
-  const router = useRouter();
-  const { theme } = useTheme();
+  const { theme, changeTheme } = useTheme();
   const { dictionary } = useLocalization();
-
-  const handleChangeTheme = (theme: Theme) => {
-    setCookies('theme', theme);
-    router.refresh();
-  };
 
   const themeOptions: IOption<Theme>[] = [
     {
@@ -50,7 +43,7 @@ function ThemeSwitcher() {
       <Select
         options={themeOptions}
         value={theme}
-        onChange={handleChangeTheme}
+        onChange={changeTheme}
         label={dictionary.theme.theme}
       />
     </div>
@@ -58,14 +51,7 @@ function ThemeSwitcher() {
 }
 
 function LangSwitcher() {
-  const [cookies, setCookies] = useCookies();
-  const router = useRouter();
-  const { dictionary, lang } = useLocalization();
-
-  const handleChangeLang = (lang: Language) => {
-    setCookies('lang', lang);
-    router.refresh();
-  };
+  const { dictionary, lang, changeLang } = useLocalization();
 
   const langOptions: IOption<Language>[] = [
     {
@@ -83,7 +69,7 @@ function LangSwitcher() {
       <Select
         options={langOptions}
         value={lang}
-        onChange={handleChangeLang}
+        onChange={changeLang}
         label={dictionary.localization.language}
       />
     </div>

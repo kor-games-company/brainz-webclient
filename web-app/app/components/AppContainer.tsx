@@ -2,16 +2,16 @@
 
 import React, { PropsWithChildren } from 'react';
 import useTheme from '../hooks/useTheme';
-import DeveloperSettings from './DeveloperSettings';
+import DeveloperPanel from './DeveloperPanel';
 
 export default function AppContainer({ children }: PropsWithChildren) {
   const { theme } = useTheme();
   return (
     <main
-      className={`h-full w-full bg-primary text-textPrimary transition-colors duration-200 ease-linear`}
+      className={`text-opposite border-opposite h-full w-full bg-primary transition-colors duration-200 ease-linear`}
       data-theme={theme}
     >
-      <DeveloperSettings />
+      <DeveloperPanel />
       {children}
     </main>
   );
