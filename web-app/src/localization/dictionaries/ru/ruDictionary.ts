@@ -16,7 +16,17 @@ export const ruDictionary: Dictionary = {
   },
   navigation: {
     home: 'Главная',
+    play: 'Играть',
     library: 'Библиотека',
     hub: 'Комнаты',
+    workshop: 'Мастерская',
+    settings: 'Настройки',
+  },
+  metadata: {
+    rootDescription: 'Повеселитесь!',
+  },
+  auth: {
+    signin: 'Вход',
+    signup: 'Регистрация',
   },
 };

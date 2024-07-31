@@ -14,9 +14,9 @@ export default function PlatformLayout({ children }: PropsWithChildren) {
         <Header />
       </ShowOn>
       <div>{children}</div>
-      <ShowOn orientation="vertical">
+      {/* <ShowOn orientation="vertical">
         <MobilePanel />
-      </ShowOn>
+      </ShowOn> */}
     </div>
   );
 }

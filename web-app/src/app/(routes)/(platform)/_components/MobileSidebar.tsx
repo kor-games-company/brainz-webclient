@@ -1,8 +1,14 @@
 import React from 'react';
 import Logo from './Logo';
 import NavLink from './NavLink';
-import { BookOpenIcon, HomeIcon } from '@heroicons/react/24/outline';
-import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
+import {
+  BookOpenIcon,
+  Cog6ToothIcon,
+  CogIcon,
+  HomeIcon,
+  PuzzlePieceIcon,
+  ChatBubbleBottomCenterIcon,
+} from '@heroicons/react/24/outline';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
 import { getLangFromCookies } from '@/utils/cookies/cookies.functions';
 
@@ -13,6 +19,11 @@ export default function MobileSidebar() {
   const links = [
     { href: '/', label: dictionary.navigation.home, icon: <HomeIcon className="h-6 w-6" /> },
     {
+      href: '/play',
+      label: dictionary.navigation.play,
+      icon: <PuzzlePieceIcon className="h-6 w-6" />,
+    },
+    {
       href: '/library',
       label: dictionary.navigation.library,
       icon: <BookOpenIcon className="h-6 w-6" />,
@@ -21,6 +32,16 @@ export default function MobileSidebar() {
       href: '/hub',
       label: dictionary.navigation.hub,
       icon: <ChatBubbleBottomCenterIcon className="h-6 w-6" />,
+    },
+    {
+      href: '/workshop',
+      label: dictionary.navigation.workshop,
+      icon: <CogIcon className="h-6 w-6" />,
+    },
+    {
+      href: '/settings',
+      label: dictionary.navigation.settings,
+      icon: <Cog6ToothIcon className="h-6 w-6" />,
     },
   ];
 

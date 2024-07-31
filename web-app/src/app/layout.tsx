@@ -9,13 +9,18 @@ import '@/globals.css';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
-export const metadata: Metadata = {
-  title: {
-    template: '%s | BrainZ',
-    default: 'BrainZ',
-  },
-  description: 'Have fun with your friends!',
-};
+export async function generateMetadata() {
+  const lang = getLangFromCookies();
+  const dictionary = dictionaryByLang[lang];
+
+  return {
+    title: {
+      template: '%s | BrainZ',
+      default: 'BrainZ',
+    },
+    description: dictionary.metadata.rootDescription,
+  };
+}
 
 export default function RootLayout({
   children,
@@ -27,7 +32,7 @@ export default function RootLayout({
   const dictionary = dictionaryByLang[lang];
 
   return (
-    <html lang="en" className="h-full w-full">
+    <html lang={lang} className="h-full w-full">
       <body className={`${inter.className} h-full w-full`}>
         <ProvidersContainer theme={theme} lang={lang} dictionary={dictionary}>
           <AppContainer>{children}</AppContainer>

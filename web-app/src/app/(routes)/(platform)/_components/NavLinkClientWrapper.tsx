@@ -25,7 +25,7 @@ export default function NavLinkClientWrapper({
   return (
     <div
       className={clsx(
-        'hover:bg-opposite/20 transition-colors duration-200 ease-linear',
+        'h-full w-full transition-colors duration-200 ease-linear hover:bg-opposite/15',
         {
           'bg-opposite/10': isActive,
         },

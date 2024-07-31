@@ -16,7 +16,17 @@ export const enDictionary: Dictionary = {
   },
   navigation: {
     home: 'Home',
+    play: 'Play',
     library: 'Library',
     hub: 'Hub',
+    workshop: 'Workshop',
+    settings: 'Settings',
+  },
+  metadata: {
+    rootDescription: 'Have fun with your friends!',
+  },
+  auth: {
+    signin: 'Sign In',
+    signup: 'Sign Up',
   },
 };

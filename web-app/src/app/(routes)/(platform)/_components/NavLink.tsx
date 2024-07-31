@@ -10,7 +10,7 @@ type Props = {
 
 export default function NavLink({ children, className, href }: PropsWithChildren<Props>) {
   return (
-    <Link href={href} className="h-full w-full">
+    <Link href={href} className="block h-full w-full">
       <NavLinkClientWrapper target={href} className={className}>
         {children}
       </NavLinkClientWrapper>

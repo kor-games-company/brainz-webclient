@@ -6,8 +6,8 @@ type Props = {
 
 export default function ShowOn({ orientation, children }: PropsWithChildren<Props>) {
   return orientation === 'vertical' ? (
-    <div className="md:hidden">{children}</div>
+    <div className="lg:hidden">{children}</div>
   ) : (
-    <div className="hidden md:block">{children}</div>
+    <div className="hidden lg:block">{children}</div>
   );
 }
