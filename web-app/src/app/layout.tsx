@@ -1,15 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
 import { cookies } from 'next/headers';
-import { FALLBACK_THEME } from './theme/constants';
-import ProvidersContainer from './components/ProvidersContainer';
-import { FALLBACK_LANGUAGE } from './localization/constants';
-import { Theme } from './theme/types';
-import { Language } from './localization/types';
-import AppContainer from './components/AppContainer';
-import { dictionaryByLang } from './localization/dictionaries/dictionaryByLang';
-import { getLangFromCookies, getThemeFromCookies } from './utils/cookies/cookies.functions';
+import { getThemeFromCookies, getLangFromCookies } from '@/utils/cookies/cookies.functions';
+import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
+import AppContainer from './_components/AppContainer';
+import ProvidersContainer from './_components/ProvidersContainer';
+import '@/globals.css';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 

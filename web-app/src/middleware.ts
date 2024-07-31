@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import localizationMiddleware from './app/middleware/localization';
-import { Language } from './app/localization/types';
-import { Theme } from './app/theme/types';
-import themeMiddleware from './app/middleware/theme';
+import { Language } from './localization/types';
+import localizationMiddleware from './middleware/localization';
+import themeMiddleware from './middleware/theme';
+import { Theme } from './theme/types';
 
 export type AppNextRequest = NextRequest & {
   lang?: Language;

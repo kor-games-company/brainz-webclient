@@ -1,8 +1,8 @@
 'use client';
 
 import { PropsWithChildren, createContext } from 'react';
-import { Theme } from '../theme/types';
-import { FALLBACK_THEME } from '../theme/constants';
+import { Theme } from '../../theme/types';
+import { FALLBACK_THEME } from '../../theme/constants';
 import { useRouter } from 'next/navigation';
 import { useCookies } from 'react-cookie';
 

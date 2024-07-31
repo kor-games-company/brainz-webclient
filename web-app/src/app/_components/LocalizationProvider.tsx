@@ -1,10 +1,10 @@
 'use client';
 
 import { PropsWithChildren, createContext } from 'react';
-import { Language } from '../localization/types';
-import { FALLBACK_LANGUAGE } from '../localization/constants';
-import { Dictionary } from '../localization/dictionaries/Dictionary';
-import { enDictionary } from '../localization/dictionaries/en/enDictionary';
+import { Language } from '../../localization/types';
+import { FALLBACK_LANGUAGE } from '../../localization/constants';
+import { Dictionary } from '../../localization/dictionaries/Dictionary';
+import { enDictionary } from '../../localization/dictionaries/en/enDictionary';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/navigation';
 

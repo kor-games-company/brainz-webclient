@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import Header from './_components/Header';
 import MobilePanel from './_components/MobilePanel';
 import MobileHeader from './_components/MobileHeader';
-import ShowOn from '@/app/ui/layout/ShowOn';
+import ShowOn from '@/app/_ui/layout/ShowOn';
 
 export default function PlatformLayout({ children }: PropsWithChildren) {
   return (

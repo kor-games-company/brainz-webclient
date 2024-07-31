@@ -1,7 +1,7 @@
-import { FALLBACK_LANGUAGE } from '@/app/localization/constants';
-import { Language } from '@/app/localization/types';
-import { FALLBACK_THEME } from '@/app/theme/constants';
-import { Theme } from '@/app/theme/types';
+import { FALLBACK_LANGUAGE } from '@/localization/constants';
+import { Language } from '@/localization/types';
+import { FALLBACK_THEME } from '@/theme/constants';
+import { Theme } from '@/theme/types';
 import { cookies } from 'next/headers';
 
 export function getLangFromCookies(): Language {

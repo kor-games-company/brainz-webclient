@@ -3,8 +3,8 @@ import Logo from './Logo';
 import NavLink from './NavLink';
 import { BookOpenIcon, HomeIcon } from '@heroicons/react/24/outline';
 import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
-import { getLangFromCookies } from '@/app/utils/cookies/cookies.functions';
-import { dictionaryByLang } from '@/app/localization/dictionaries/dictionaryByLang';
+import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
+import { getLangFromCookies } from '@/utils/cookies/cookies.functions';
 
 export default function MobileSidebar() {
   const lang = getLangFromCookies();

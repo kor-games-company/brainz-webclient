@@ -1,8 +1,8 @@
 import React from 'react';
 import Logo from './Logo';
-import Button from '@/app/ui/buttons/Button';
 import Link from 'next/link';
 import NavLink from './NavLink';
+import Button from '@/app/_ui/buttons/Button';
 
 const links = [{ href: '/library', label: 'Library' }];
 

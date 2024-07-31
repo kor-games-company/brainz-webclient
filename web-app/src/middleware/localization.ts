@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Language } from '../localization/types';
-import { AppNextRequest } from '../../middleware';
 import { FALLBACK_LANGUAGE, SUPPORTED_LANGUAGES } from '../localization/constants';
+import { AppNextRequest } from '@/middleware';
 
 export default async function localizationMiddleware(req: AppNextRequest, res: NextResponse) {
   // TODO: After implementing authorization first priority will be to check user defined language

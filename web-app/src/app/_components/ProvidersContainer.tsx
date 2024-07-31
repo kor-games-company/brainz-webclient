@@ -3,9 +3,9 @@
 import React, { PropsWithChildren } from 'react';
 import LocalizationProvider from './LocalizationProvider';
 import ThemeProvider from './ThemeProvider';
-import { Language } from '../localization/types';
-import { Theme } from '../theme/types';
-import { Dictionary } from '../localization/dictionaries/Dictionary';
+import { Language } from '../../localization/types';
+import { Theme } from '../../theme/types';
+import { Dictionary } from '../../localization/dictionaries/Dictionary';
 
 export default function ProvidersContainer({
   children,

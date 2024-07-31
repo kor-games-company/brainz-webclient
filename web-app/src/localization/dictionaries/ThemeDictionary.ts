@@ -1,4 +1,4 @@
-import { Theme } from '@/app/theme/types';
+import { Theme } from '@/theme/types';
 
 export type ThemeDictionary = Record<Theme, string> & {
   theme: string;

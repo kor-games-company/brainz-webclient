@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { useCookies } from 'react-cookie';
-import { Theme } from '../theme/types';
+import { Theme } from '../../theme/types';
 import { useRouter } from 'next/navigation';
-import { IOption } from '../ui/selectors/IOption';
-import Select from '../ui/selectors/Select';
-import { Language } from '../localization/types';
-import useLocalization from '../hooks/useLocalization';
-import useTheme from '../hooks/useTheme';
+import { IOption } from '../_ui/selectors/IOption';
+import Select from '../_ui/selectors/Select';
+import { Language } from '../../localization/types';
+import useLocalization from '../_hooks/useLocalization';
+import useTheme from '../_hooks/useTheme';
 
 export default function DeveloperPanel() {
   const { dictionary } = useLocalization();
