@@ -9,7 +9,7 @@ export type AppNextRequest = NextRequest & {
   theme?: Theme;
 };
 
-export async function middleware(req: AppNextRequest) {
+export default async function middleware(req: AppNextRequest) {
   const response = NextResponse.next();
   localizationMiddleware(req, response);
   themeMiddleware(req, response);

@@ -56,8 +56,8 @@ export default function Header() {
         </nav>
       </div>
       <div>
-        <Link href="/signin">
-          <Button>Sign In</Button>
+        <Link href="/signup">
+          <Button>Sign Up</Button>
         </Link>
       </div>
     </header>
