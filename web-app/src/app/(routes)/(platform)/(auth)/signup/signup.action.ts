@@ -3,7 +3,6 @@
 import { ZodError } from 'zod';
 import bcrypt from 'bcrypt';
 import { AuthSchema } from '@/auth/auth.schema';
-import { createUser, getUser } from '@/auth/auth.db';
 import { signIn, signUp } from '@/auth/auth';
 import { redirect } from 'next/navigation';
 
