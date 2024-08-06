@@ -33,12 +33,6 @@ export const enDictionary: Dictionary = {
     password: 'Password',
   },
   errors: {
-    existingUser: 'User with this email is already signed up',
-    nonExistingUser: 'User with this email was not signed up yet',
-    invalidEmail: 'Invalid email',
-    invalidPassword: 'Invalid password',
-    invalidRefreshToken: 'invalid refresh token',
-    missingConfig: 'Configuration {configName} is missing',
     database: 'Error accessing database',
     error: 'Error',
   },

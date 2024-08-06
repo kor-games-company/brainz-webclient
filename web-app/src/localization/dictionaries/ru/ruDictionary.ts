@@ -33,12 +33,6 @@ export const ruDictionary: Dictionary = {
     password: 'Пароль',
   },
   errors: {
-    existingUser: 'Пользователь с такой почтой уже зарегистрирован',
-    nonExistingUser: 'Пользователь с такой почтой ещё не зарегистрирован',
-    invalidEmail: 'Неверный адрес почты',
-    invalidPassword: 'Неверный пароль',
-    invalidRefreshToken: 'Неверный токен обновления',
-    missingConfig: 'Конфигурация {configName} отсутствует',
     database: 'Ошибка доступа к базе данных',
     error: 'Ошибка',
   },
