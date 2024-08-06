@@ -11,3 +11,13 @@ export function getLangFromCookies(): Language {
 export function getThemeFromCookies(): Theme {
   return (cookies().get('theme')?.value ?? FALLBACK_THEME) as Theme;
 }
+
+export function setRefreshTokenCookie(refreshToken: string) {
+  cookies().set('refresh', refreshToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    path: '/',
+    maxAge: 60 * 60 * 24 * 30,
+  });
+}

@@ -1,8 +1,11 @@
 import bcrypt from 'bcrypt';
 import { prisma } from '@/prisma';
-import { AuthSchema } from './auth.schema';
-import { Result, errorResult, successResult } from '@/utils/types/Result';
+import { Result, errorResult, successResult } from '@/utils/schema/Result';
 import jwt from 'jsonwebtoken';
+import { AppError } from '@/error-handling/AppError';
+import { createError } from '@/error-handling/error.builders';
+import { ERROR_CODES } from '@/error-handling/constants';
+import { getLangFromCookies } from '@/utils/cookies/cookies.functions';
 
 export type AuthTokens = {
   accessToken: string;
@@ -15,31 +18,61 @@ export async function signUp({
 }: {
   email: string;
   password: string;
-}): Promise<Result<AuthTokens, string>> {
+}): Promise<Result<AuthTokens, AppError>> {
+  const lang = getLangFromCookies();
+
   const secret = process.env.AUTH_SECRET;
-  if (!secret) throw new Error('Auth secret is not provided');
+  if (!secret)
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.server.missingConfig,
+        type: 'Server',
+        args: { configName: 'Auth' },
+        lang,
+        httpStatus: 500,
+      }),
+    );
 
   const user = await prisma.user.findFirst({
     where: {
       email: email,
     },
   });
-  if (user) return errorResult('There is already a user with this email');
+  if (user)
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.auth.existingUser,
+        type: 'Client',
+        lang,
+        httpStatus: 409,
+      }),
+    );
 
   const passwordHash = await bcrypt.hash(password, 10);
 
-  const createdUser = await prisma.user.create({
-    data: { email, passwordHash },
-  });
+  try {
+    const createdUser = await prisma.user.create({
+      data: { email, passwordHash },
+    });
+    const accessToken = jwt.sign({ userId: createdUser.id }, secret, { expiresIn: '15m' });
+    const refreshToken = jwt.sign({ userId: createdUser.id }, secret, { expiresIn: '7d' });
 
-  const accessToken = jwt.sign({ userId: createdUser.id }, secret, { expiresIn: '15m' });
-  const refreshToken = jwt.sign({ userId: createdUser.id }, secret, { expiresIn: '7d' });
+    await prisma.refreshToken.create({
+      data: { token: refreshToken, userId: createdUser.id },
+    });
 
-  await prisma.refreshToken.create({
-    data: { token: refreshToken, userId: createdUser.id },
-  });
-
-  return successResult({ accessToken, refreshToken });
+    return successResult({ accessToken, refreshToken });
+  } catch (err) {
+    console.error(err);
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.external.database,
+        type: 'External',
+        lang,
+        httpStatus: 500,
+      }),
+    );
+  }
 }
 
 export async function signIn({
@@ -48,65 +81,134 @@ export async function signIn({
 }: {
   email: string;
   password: string;
-}): Promise<Result<AuthTokens, string>> {
+}): Promise<Result<AuthTokens, AppError>> {
+  const lang = getLangFromCookies();
+
   const secret = process.env.AUTH_SECRET;
-  if (!secret) throw new Error('Auth secret is not provided');
+  if (!secret)
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.server.missingConfig,
+        type: 'Server',
+        args: { configName: 'Auth' },
+        lang,
+        httpStatus: 500,
+      }),
+    );
 
   const user = await prisma.user.findFirst({
     where: {
       email: email,
     },
   });
-  // TODO: Add errors translation
-  if (!user) return errorResult('There is no user with this email');
+
+  if (!user)
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.auth.nonExistingUser,
+        type: 'Client',
+        lang,
+        httpStatus: 401,
+      }),
+    );
 
   const passwordsMatch = await bcrypt.compare(password, user.passwordHash);
-  if (!passwordsMatch) return errorResult('Password is incorrect, please try again');
+  if (!passwordsMatch)
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.auth.invalidPassword,
+        type: 'Client',
+        lang,
+        httpStatus: 401,
+      }),
+    );
 
   const accessToken = jwt.sign({ userId: user.id }, secret, { expiresIn: '15m' });
   const refreshToken = jwt.sign({ userId: user.id }, secret, { expiresIn: '7d' });
 
-  await prisma.refreshToken.create({
-    data: { token: refreshToken, userId: user.id },
-  });
+  try {
+    await prisma.refreshToken.create({
+      data: { token: refreshToken, userId: user.id },
+    });
+  } catch (err) {
+    console.error(err);
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.external.database,
+        type: 'External',
+        lang,
+        httpStatus: 500,
+      }),
+    );
+  }
 
   return successResult({ accessToken, refreshToken });
 }
 
-export async function refresh(refreshToken: string): Promise<Result<AuthTokens, string>> {
+export async function refresh(refreshToken: string): Promise<Result<AuthTokens, AppError>> {
+  const lang = getLangFromCookies();
+
   const secret = process.env.AUTH_SECRET;
-  if (!secret) throw new Error('Auth secret is not provided');
+  if (!secret)
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.server.missingConfig,
+        type: 'Server',
+        args: { configName: 'Auth' },
+        lang,
+        httpStatus: 500,
+      }),
+    );
 
-  const existingToken = await prisma.refreshToken.findFirst({
-    where: {
-      token: refreshToken,
-    },
-    include: {
-      user: true,
-    },
-  });
-
-  if (!existingToken) return errorResult('Refresh token is not valid');
-  if (existingToken.isRevoked) return errorResult('Refresh token is already revoked');
-
-  const user = existingToken.user;
-
-  const accessToken = jwt.sign({ userId: user.id }, secret, { expiresIn: '15m' });
-  const newRefreshToken = jwt.sign({ userId: user.id }, secret, { expiresIn: '7d' });
-
-  await prisma.$transaction([
-    prisma.refreshToken.update({
+  try {
+    const existingToken = await prisma.refreshToken.findFirst({
       where: {
-        id: existingToken.id,
+        token: refreshToken,
       },
-      data: {
-        isRevoked: true,
+      include: {
+        user: true,
       },
-    }),
-    prisma.refreshToken.create({
-      data: { token: newRefreshToken, userId: user.id },
-    }),
-  ]);
+    });
 
-  return successResult({ accessToken, refreshToken: newRefreshToken });
+    if (!existingToken || existingToken.isRevoked)
+      return errorResult(
+        createError({
+          errorCode: ERROR_CODES.auth.invalidRefreshToken,
+          type: 'Client',
+          lang,
+          httpStatus: 401,
+        }),
+      );
+
+    const user = existingToken.user;
+
+    const accessToken = jwt.sign({ userId: user.id }, secret, { expiresIn: '15m' });
+    const newRefreshToken = jwt.sign({ userId: user.id }, secret, { expiresIn: '7d' });
+
+    await prisma.$transaction([
+      prisma.refreshToken.update({
+        where: {
+          id: existingToken.id,
+        },
+        data: {
+          isRevoked: true,
+        },
+      }),
+      prisma.refreshToken.create({
+        data: { token: newRefreshToken, userId: user.id },
+      }),
+    ]);
+
+    return successResult({ accessToken, refreshToken: newRefreshToken });
+  } catch (err) {
+    console.error(err);
+    return errorResult(
+      createError({
+        errorCode: ERROR_CODES.external.database,
+        type: 'External',
+        lang,
+        httpStatus: 500,
+      }),
+    );
+  }
 }

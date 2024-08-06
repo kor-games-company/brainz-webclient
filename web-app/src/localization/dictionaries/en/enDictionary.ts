@@ -29,4 +29,19 @@ export const enDictionary: Dictionary = {
     signin: 'Sign In',
     signup: 'Sign Up',
   },
+  errors: {
+    existingUser: 'User with this email is already signed up',
+    nonExistingUser: 'User with this email was not signed up yet',
+    invalidEmail: 'Invalid email',
+    invalidPassword: 'Invalid password',
+    invalidRefreshToken: 'invalid refresh token',
+    missingConfig: 'Configuration {configName} is missing',
+    database: 'Error accessing database',
+    error: 'Error',
+  },
+  schema: {
+    string: 'Field should not be empty',
+    email: 'Field should be a valid email address',
+    min: 'Field length should be {value} or more',
+  },
 };
