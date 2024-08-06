@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
-import Header from './_components/Header';
-import MobilePanel from './_components/MobilePanel';
-import MobileHeader from './_components/MobileHeader';
+import Header from './_components/large-screen/Header';
+import MobilePanel from './_components/small-screen/MobilePanel';
+import MobileHeader from './_components/small-screen/MobileHeader';
 import ShowOn from '@/app/_ui/layout/ShowOn';
 
 export default function PlatformLayout({ children }: PropsWithChildren) {

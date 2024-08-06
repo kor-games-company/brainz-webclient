@@ -27,10 +27,9 @@ export const enDictionary: Dictionary = {
   },
   auth: {
     signin: 'Sign In',
-    signup: 'Sign Up',
     signout: 'Sign Out',
     email: 'Email',
-    password: 'Password',
+    continueWithoutSigning: 'Continue without signing in',
   },
   errors: {
     database: 'Error accessing database',
@@ -39,6 +38,5 @@ export const enDictionary: Dictionary = {
   schema: {
     string: 'Field should not be empty',
     email: 'Field should be a valid email address',
-    min: 'Field length should be {value} or more',
   },
 };

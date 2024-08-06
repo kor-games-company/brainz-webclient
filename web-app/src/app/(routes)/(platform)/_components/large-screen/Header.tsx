@@ -1,23 +1,26 @@
 import React from 'react';
-import Logo from './Logo';
-import NavLink from './NavLink';
+import Logo from '../Logo';
+import Link from 'next/link';
+import NavLink from '../NavLink';
+import Button from '@/app/_ui/buttons/Button';
 import {
   BookOpenIcon,
-  Cog6ToothIcon,
   CogIcon,
-  HomeIcon,
   PuzzlePieceIcon,
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
 import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
+import AuthSection from './AuthSection';
+import UserBadge from './UserBadge';
+import { auth } from '@/auth/auth';
 
-export default function MobileSidebar() {
+export default async function Header() {
   const lang = getLangFromCookies();
   const dictionary = dictionaryByLang[lang];
+  const session = await auth();
 
   const links = [
-    { href: '/', label: dictionary.navigation.home, icon: <HomeIcon className="h-6 w-6" /> },
     {
       href: '/play',
       label: dictionary.navigation.play,
@@ -28,31 +31,24 @@ export default function MobileSidebar() {
       label: dictionary.navigation.library,
       icon: <BookOpenIcon className="h-6 w-6" />,
     },
-    {
+  ];
+
+  if (session?.user) {
+    links.push({
       href: '/hub',
       label: dictionary.navigation.hub,
       icon: <ChatBubbleBottomCenterIcon className="h-6 w-6" />,
-    },
-    {
-      href: '/workshop',
-      label: dictionary.navigation.workshop,
-      icon: <CogIcon className="h-6 w-6" />,
-    },
-    {
-      href: '/settings',
-      label: dictionary.navigation.settings,
-      icon: <Cog6ToothIcon className="h-6 w-6" />,
-    },
-  ];
+    });
+  }
 
   return (
-    <div className="flex h-full flex-col gap-8">
-      <div className="my-4 self-center">
+    <header className="flex items-center justify-between bg-secondary px-32 py-4 shadow-sm shadow-black/30">
+      <div className="w-1/6">
         <Logo />
       </div>
-      <div className="px-2">
+      <div>
         <nav>
-          <ul>
+          <ul className="flex gap-2">
             {links.map((link) => {
               return (
                 <li key={link.href}>
@@ -66,6 +62,10 @@ export default function MobileSidebar() {
           </ul>
         </nav>
       </div>
-    </div>
+      <div className="flex items-center gap-4">
+        <UserBadge />
+        <AuthSection />
+      </div>
+    </header>
   );
 }

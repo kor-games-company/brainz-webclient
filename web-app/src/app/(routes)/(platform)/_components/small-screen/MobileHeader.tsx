@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from './Logo';
+import Logo from '../Logo';
 import MobileSidebarOpener from './MobileSidebarOpener';
 import MobileSidebar from './MobileSidebar';
 

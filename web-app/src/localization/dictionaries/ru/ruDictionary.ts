@@ -27,10 +27,9 @@ export const ruDictionary: Dictionary = {
   },
   auth: {
     signin: 'Вход',
-    signup: 'Регистрация',
     signout: 'Выход',
     email: 'Почта',
-    password: 'Пароль',
+    continueWithoutSigning: 'Продолжить без входа',
   },
   errors: {
     database: 'Ошибка доступа к базе данных',
@@ -39,6 +38,5 @@ export const ruDictionary: Dictionary = {
   schema: {
     string: 'Поле должно быть не пустой строкой',
     email: 'Поле должно быть коректной почтой',
-    min: 'Поле должно содержать {value} или больше элементов',
   },
 };

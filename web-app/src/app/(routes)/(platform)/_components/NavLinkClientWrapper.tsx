@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
-import { useMobileSidebarOpenerContext } from './MobileSidebarOpener';
+import { useMobileSidebarOpenerContext } from './small-screen/MobileSidebarOpener';
 
 type Props = {
   target: string;

@@ -17,8 +17,9 @@ function Button(
       className={clsx(
         'rounded-md px-4 py-2 transition-colors duration-200 ease-linear',
         {
-          'bg-opposite hover:bg-oppositeSecondary text-primary': variant === 'solid',
-          'text-opposite bg-primary hover:bg-secondary': variant === 'outlined',
+          'bg-opposite text-primary hover:bg-oppositeSecondary': variant === 'solid',
+          'border border-opposite bg-transparent text-opposite hover:bg-opposite/10':
+            variant === 'outlined',
         },
         className,
       )}

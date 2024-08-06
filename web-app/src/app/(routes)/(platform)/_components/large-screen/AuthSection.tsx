@@ -10,21 +10,21 @@ export default async function AuthSection() {
   const dictionary = dictionaryByLang[lang].auth;
   const session = await auth();
 
+  const handleSignOut = async () => {
+    'use server';
+    await signOut();
+  };
+
   return session?.user ? (
     <div>
-      <form
-        action={async () => {
-          'use server';
-          await signOut();
-        }}
-      >
-        <Button>{dictionary.signout}</Button>
+      <form action={handleSignOut}>
+        <Button variant="outlined">{dictionary.signout}</Button>
       </form>
     </div>
   ) : (
     <div>
       <Link href="/signin">
-        <Button>{dictionary.signin}</Button>
+        <Button variant="outlined">{dictionary.signin}</Button>
       </Link>
     </div>
   );
