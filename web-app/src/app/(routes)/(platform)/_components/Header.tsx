@@ -10,7 +10,8 @@ import {
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
-import { getLangFromCookies } from '@/utils/cookies/cookies.functions';
+import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
+import AuthSection from './AuthSection';
 
 export default function Header() {
   const lang = getLangFromCookies();
@@ -56,9 +57,7 @@ export default function Header() {
         </nav>
       </div>
       <div>
-        <Link href="/signup">
-          <Button>Sign Up</Button>
-        </Link>
+        <AuthSection />
       </div>
     </header>
   );

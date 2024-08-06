@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
-import { getThemeFromCookies, getLangFromCookies } from '@/utils/cookies/cookies.functions';
+import { getThemeFromCookies, getLangFromCookies } from '@/utils/cookies/cookies.utils';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
 import AppContainer from './_components/AppContainer';
 import ProvidersContainer from './_components/ProvidersContainer';

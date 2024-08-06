@@ -28,6 +28,9 @@ export const ruDictionary: Dictionary = {
   auth: {
     signin: 'Вход',
     signup: 'Регистрация',
+    signout: 'Выход',
+    email: 'Почта',
+    password: 'Пароль',
   },
   errors: {
     existingUser: 'Пользователь с такой почтой уже зарегистрирован',

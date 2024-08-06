@@ -5,7 +5,7 @@ import { ThemeDictionary } from './ThemeDictionary';
 import { MetadataDictionary } from './MetadataDictionary';
 import { AuthDictionary } from './AuthDictionary';
 import { ErrorsDictionary } from './ErrorsDictionary';
-import { SchemaDictionary } from './SchemaDictionary';
+import { SchemaValidationDictionary } from './SchemaValidationDictionary';
 
 export type Dictionary = {
   theme: ThemeDictionary;
@@ -15,5 +15,5 @@ export type Dictionary = {
   metadata: MetadataDictionary;
   auth: AuthDictionary;
   errors: ErrorsDictionary;
-  schema: SchemaDictionary;
+  schema: SchemaValidationDictionary;
 };

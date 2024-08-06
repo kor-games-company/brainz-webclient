@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { AppError } from '@/error-handling/AppError';
 import { createError } from '@/error-handling/error.builders';
 import { ERROR_CODES } from '@/error-handling/constants';
-import { getLangFromCookies } from '@/utils/cookies/cookies.functions';
+import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
 
 export type AuthTokens = {
   accessToken: string;

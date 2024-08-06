@@ -10,7 +10,7 @@ import {
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
-import { getLangFromCookies } from '@/utils/cookies/cookies.functions';
+import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
 
 export default function MobileSidebar() {
   const lang = getLangFromCookies();

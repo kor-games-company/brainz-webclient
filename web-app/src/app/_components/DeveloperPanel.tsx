@@ -50,19 +50,19 @@ function ThemeSwitcher() {
   );
 }
 
+const langOptions: IOption<Language>[] = [
+  {
+    label: 'English',
+    value: 'en',
+  },
+  {
+    label: 'Русский',
+    value: 'ru',
+  },
+];
+
 function LangSwitcher() {
   const { dictionary, lang, changeLang } = useLocalization();
-
-  const langOptions: IOption<Language>[] = [
-    {
-      label: 'English',
-      value: 'en',
-    },
-    {
-      label: 'Русский',
-      value: 'ru',
-    },
-  ];
 
   return (
     <div>

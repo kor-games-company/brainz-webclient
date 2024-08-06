@@ -1,10 +1,15 @@
 'use client';
 
+import useLocalization from '@/app/_hooks/useLocalization';
 import { redirect, useRouter } from 'next/navigation';
 import React, { FormEvent } from 'react';
 
 export default function SignUpPage() {
   const router = useRouter();
+  const {
+    dictionary: { auth: dictionary },
+  } = useLocalization();
+
   async function handleSignUp(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -30,17 +35,17 @@ export default function SignUpPage() {
   return (
     <form onSubmit={handleSignUp} className="my-8 flex flex-col items-center rounded-md">
       <div className="flex flex-col">
-        <label>Email</label>
+        <label>{dictionary.email}</label>
         <input name="email" type="email" className="rounded-md bg-secondary p-2 text-opposite" />
 
-        <label>Password</label>
+        <label>{dictionary.password}</label>
         <input
           name="password"
           type="password"
           className="rounded-md bg-secondary p-2 text-opposite"
         />
       </div>
-      <button type="submit">Sign Up</button>
+      <button type="submit">{dictionary.signup}</button>
     </form>
   );
 }

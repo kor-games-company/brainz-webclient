@@ -28,6 +28,9 @@ export const enDictionary: Dictionary = {
   auth: {
     signin: 'Sign In',
     signup: 'Sign Up',
+    signout: 'Sign Out',
+    email: 'Email',
+    password: 'Password',
   },
   errors: {
     existingUser: 'User with this email is already signed up',

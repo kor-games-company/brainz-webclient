@@ -1,6 +1,6 @@
 import { signUp } from '@/auth/auth';
 import { getAuthSchema } from '@/auth/auth.schema';
-import { getLangFromCookies, setRefreshTokenCookie } from '@/utils/cookies/cookies.functions';
+import { getLangFromCookies, setRefreshTokenCookie } from '@/utils/cookies/cookies.utils';
 import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
