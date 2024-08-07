@@ -8,6 +8,8 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+// PRISMA MODELS
+
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -38,6 +40,15 @@ model Session {
   @@map("sessions")
 }
  
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+ 
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -46,15 +57,120 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+
+  // custom references
+  packs GamePack[]
+  rooms GameRoom[]
  
   @@map("users")
 }
- 
-model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
- 
-  @@unique([identifier, token])
-  @@map("verificationtokens")
+
+// DOMAIN MODELS
+
+enum GameType {
+  SLOTS
+  QUIZ
+  TERRITORY
+}
+
+model GamePack {
+  id String @id @default(cuid())
+  name String
+  description String
+  gameType GameType
+  image String?
+  isPublic Boolean @default(false) @map("is_public")
+
+  userId String @map("user_id")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  rooms GameRoom[]
+
+  slotsPack SlotsPack?
+
+  @@index([userId])
+  @@index([gameType])
+  @@map("game_packs")
+}
+
+model GameRoom {
+  id String @id @default(cuid())
+  server String
+  code String @unique
+  isPublic Boolean @map("is_public")
+  name String
+  description String
+  image String?
+
+  ownerId String @map("owner_id")
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  packId String @map("pack_id")
+  pack GamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  @@index([code])
+  @@index([isPublic])
+	@@map("game_rooms")
+}
+
+// SLOTS GAME
+
+model SlotsPack {
+  packId String @id @map("pack_id")
+  pack GamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  stages SlotsStage[]
+
+  @@map("slots_packs")
+}
+
+model SlotsStage {
+  id String @id @default(cuid())
+  number Int
+  name String
+  description String
+  image String?
+
+  packId String @map("pack_id")
+  pack SlotsPack @relation(fields: [packId], references: [packId], onDelete: Cascade)
+
+  topics SlotsTopic[]
+
+  @@index([packId])
+  @@map("slots_stages")
+}
+
+model SlotsTopic {
+  id String @id @default(cuid())
+  number Int
+  name String
+
+  stageId String @map("stage_id")
+  stage SlotsStage @relation(fields: [stageId], references: [id], onDelete: Cascade)
+
+  questions SlotsQuestion[]
+
+  @@index([stageId])
+  @@map("slots_topics")
+}
+
+enum SlotsQuestionType {
+  TEXT
+  IMAGE
+  AUDIO
+  VIDEO
+}
+
+model SlotsQuestion {
+  id String @id @default(cuid())
+  type SlotsQuestionType
+  points Int
+  title String
+  content String
+
+  topicId String @map("topic_id")
+  topic SlotsTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@index([topicId])
+  @@map("slots_questions")
 }
