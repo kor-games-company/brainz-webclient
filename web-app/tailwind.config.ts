@@ -5,20 +5,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--primary)',
-        secondary: 'var(--secondary)',
-        accent: 'var(--accent)',
-        background: 'var(--background)',
-        opposite: 'var(--opposite)',
-        'opposite-secondary': 'var(--opposite-secondary)',
-        success: 'var(--success)',
-        error: 'var(--error)',
-        warning: 'var(--warning)',
-        info: 'var(--info)',
-        'light-gray': 'var(--light-gray)',
-        'dark-gray': 'var(--dark-gray)',
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        background: 'rgb(var(--color-background) / <alpha-value>)',
+        opposite: 'rgb(var(--color-opposite) / <alpha-value>)',
+        'opposite-secondary': 'rgb(var(--color-opposite-secondary) / <alpha-value>)',
+        success: 'rgb(var(--color-success) / <alpha-value>)',
+        error: 'rgb(var(--color-error) / <alpha-value>)',
+        warning: 'rgb(var(--color-warning) / <alpha-value>)',
+        info: 'rgb(var(--color-info) / <alpha-value>)',
+        'light-gray': 'rgb(var(--color-light-gray) / <alpha-value>)',
+        'dark-gray': 'rgb(var(--color-dark-gray) / <alpha-value>)',
       },
     },
   },
 };
+
 export default config;

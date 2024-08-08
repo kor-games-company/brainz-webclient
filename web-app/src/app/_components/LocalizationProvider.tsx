@@ -26,10 +26,9 @@ export default function LocalizationProvider({
   dictionary,
 }: PropsWithChildren<{ lang: Language; dictionary: Dictionary }>) {
   const [cookies, setCookies] = useCookies();
-  const router = useRouter();
   function changeLang(lang: Language) {
     setCookies('lang', lang);
-    router.refresh();
+    location.reload();
   }
   return (
     <LocalizationContext.Provider value={{ lang, dictionary, changeLang }}>
