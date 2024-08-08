@@ -13,7 +13,7 @@ import { Field, Fieldset, Label, Legend } from '@headlessui/react';
 export default function DeveloperPanel() {
   const { dictionary } = useLocalization();
   return (
-    <Fieldset className="absolute bottom-[100px] left-[100px] cursor-default select-none flex-col gap-2 rounded-md bg-secondary p-4 shadow-lg">
+    <Fieldset className="cursor-default select-none flex-col gap-2 rounded-md bg-secondary p-4 shadow-lg">
       <Legend className="self-center rounded-md bg-primary px-4 py-2">
         {dictionary.development.developerPanel}
       </Legend>

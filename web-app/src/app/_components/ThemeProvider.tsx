@@ -20,9 +20,11 @@ export const ThemeContext = createContext<ThemeContextType>({
 
 export default function ThemeProvider({ children, theme }: PropsWithChildren<{ theme: Theme }>) {
   const [cookies, setCookies] = useCookies();
+  const router = useRouter();
+
   function changeTheme(theme: Theme) {
     setCookies('theme', theme);
-    location.reload();
+    router.refresh();
   }
   return (
     <ThemeContext.Provider value={{ theme, colors: THEMES_COLORS[theme], changeTheme }}>
