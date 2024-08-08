@@ -10,9 +10,9 @@ import {
 } from '@heroicons/react/24/outline';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
 import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
-import AuthSection from './AuthSection';
 import UserBadge from './UserBadge';
 import { auth } from '@/auth/auth';
+import StyledButton from '@/app/_ui/styled/StyledButton';
 
 export default async function Header() {
   const lang = getLangFromCookies();
@@ -42,7 +42,7 @@ export default async function Header() {
 
   return (
     <header className="flex items-center justify-between bg-secondary px-32 py-4 shadow-sm shadow-black/30">
-      <div className="w-1/6">
+      <div>
         <Logo />
       </div>
       <div>
@@ -62,8 +62,13 @@ export default async function Header() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <UserBadge />
-        <AuthSection />
+        {session?.user ? (
+          <UserBadge />
+        ) : (
+          <Link href="/signin">
+            <StyledButton>{dictionary.auth.signin}</StyledButton>
+          </Link>
+        )}
       </div>
     </header>
   );

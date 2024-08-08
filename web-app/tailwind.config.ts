@@ -1,9 +1,24 @@
 import type { Config } from 'tailwindcss';
-import { THEMES_COLORS } from './src/theme/constants';
-import { createThemes } from 'tw-colors';
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
-  plugins: [createThemes(THEMES_COLORS)],
+  theme: {
+    extend: {
+      colors: {
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+        accent: 'var(--accent)',
+        background: 'var(--background)',
+        opposite: 'var(--opposite)',
+        'opposite-secondary': 'var(--opposite-secondary)',
+        success: 'var(--success)',
+        error: 'var(--error)',
+        warning: 'var(--warning)',
+        info: 'var(--info)',
+        'light-gray': 'var(--light-gray)',
+        'dark-gray': 'var(--dark-gray)',
+      },
+    },
+  },
 };
 export default config;

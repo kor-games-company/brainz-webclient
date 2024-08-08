@@ -1,32 +1,89 @@
-import { auth } from '@/auth/auth';
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { auth, signOut } from '@/auth/auth';
+import { THEMES_COLORS } from '@/theme/constants';
+import { getLangFromCookies, getThemeFromCookies } from '@/utils/cookies/cookies.utils';
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  MenuSection,
+  MenuSeparator,
+} from '@headlessui/react';
 import { PencilIcon } from '@heroicons/react/20/solid';
 import React from 'react';
+import Image from 'next/image';
+import ProfileIcon from '../ProfileIcon';
+import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
+import Link from 'next/link';
+import { Cog6ToothIcon, CogIcon } from '@heroicons/react/24/outline';
+import UserBadgeNavLink from './UserBadgeNavLink';
 
 export default async function UserBadge() {
   const session = await auth();
 
   if (!session?.user) return null;
 
-  const user = session.user;
+  const userName = session.user.name ?? session.user.email ?? 'Unknown';
+
+  const theme = getThemeFromCookies();
+  const colors = THEMES_COLORS[theme];
+
+  const lang = getLangFromCookies();
+  const dictionary = dictionaryByLang[lang];
+
+  const handleSignOut = async () => {
+    'use server';
+    await signOut();
+  };
 
   return (
     <Menu>
-      <MenuButton>{user.email}</MenuButton>
+      <MenuButton>
+        <div className="h-12 w-12 transition-opacity duration-200 hover:opacity-80">
+          <ProfileIcon name={userName} imageSrc={session.user.image} />
+        </div>
+      </MenuButton>
       <MenuItems
         transition
-        anchor="bottom end"
-        className="w-52 origin-top-right rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
+        anchor="bottom"
+        className="mt-6 origin-top rounded-md bg-secondary text-opposite shadow-lg transition duration-200 ease-out data-[closed]:opacity-0"
       >
-        <MenuItem>
-          <button className="group flex w-full items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10">
-            <PencilIcon className="size-4 fill-white/30" />
-            Edit
-            <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">
-              ⌘E
-            </kbd>
-          </button>
-        </MenuItem>
+        <MenuSection className="cursor-default select-none px-4 pb-1 pt-2">
+          <div className="flex h-16 items-center gap-2">
+            <div className="h-10 w-10">
+              <ProfileIcon name={userName} imageSrc={session.user.image} />
+            </div>
+            <div>
+              <p>{userName}</p>
+              <p className="text-sm opacity-50">{session.user.email}</p>
+            </div>
+          </div>
+        </MenuSection>
+        <MenuSeparator className="my-1 h-px bg-opposite opacity-10" />
+        <MenuSection>
+          <MenuItem>
+            <UserBadgeNavLink
+              icon={<CogIcon className="h-6 w-6" />}
+              label={dictionary.navigation.workshop}
+              href="/workshop"
+            />
+          </MenuItem>
+          <MenuItem>
+            <UserBadgeNavLink
+              icon={<Cog6ToothIcon className="h-6 w-6" />}
+              label={dictionary.navigation.settings}
+              href="/settings"
+            />
+          </MenuItem>
+        </MenuSection>
+        <MenuSeparator className="my-1 h-px bg-opposite opacity-10" />
+        <MenuSection>
+          <MenuItem>
+            <form action={handleSignOut}>
+              <button type="submit">{dictionary.auth.signout}</button>
+            </form>
+          </MenuItem>
+        </MenuSection>
       </MenuItems>
     </Menu>
   );

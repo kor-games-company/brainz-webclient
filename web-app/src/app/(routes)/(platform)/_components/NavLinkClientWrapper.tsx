@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 import { useMobileSidebarOpenerContext } from './small-screen/MobileSidebarOpener';
+import useIsActiveLink from '../_hooks/useIsActiveLink';
 
 type Props = {
   target: string;
@@ -15,12 +16,8 @@ export default function NavLinkClientWrapper({
   target,
   className,
 }: PropsWithChildren<Props>) {
-  const pathname = usePathname();
+  const isActive = useIsActiveLink(target);
   const { close } = useMobileSidebarOpenerContext();
-
-  const isRoot = pathname === '/' && target === '/';
-  const isTargetRoot = target === '/';
-  const isActive = isRoot || (!isTargetRoot && pathname.startsWith(target));
 
   return (
     <div
