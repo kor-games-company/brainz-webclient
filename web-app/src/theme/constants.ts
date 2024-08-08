@@ -4,31 +4,31 @@ export const SUPPORTED_THEMES: Theme[] = ['dark', 'light'];
 export const FALLBACK_THEME: Theme = 'dark';
 export const THEMES_COLORS: Record<Theme, ThemeColors> = {
   dark: {
-    primary: '#1E1E1E', // Dark Gray for primary background
-    secondary: '#252525', // Slightly lighter gray for secondary elements
-    accent: '#FF6F61', // Coral for accents and highlights
-    background: '#121212', // Black or very dark gray for background
-    opposite: '#FFFFFF', // White for primary text
-    oppositeSecondary: '#B3B3B3', // Light gray for secondary text
-    success: '#4CAF50', // Green for success messages
-    error: '#F44336', // Red for error messages
-    warning: '#FF9800', // Orange for warning messages
-    info: '#2196F3', // Blue for informational messages
-    lightGray: '#9E9E9E', // Light gray for borders or inactive elements
-    darkGray: '#212121', // Dark gray for deeper elements
+    primary: '#282c34', // Dark blue-gray for primary background
+    secondary: '#3c4048', // Medium gray for secondary elements
+    accent: '#61dafb', // Light blue for accents and highlights
+    background: '#1c1f26', // Very dark blue-gray for background
+    opposite: '#ffffff', // White for primary text
+    oppositeSecondary: '#b0b0b0', // Light gray for secondary text
+    success: '#34c759', // Bright green for success messages
+    error: '#ff3b30', // Bright red for error messages
+    warning: '#ffcc00', // Yellow for warning messages
+    info: '#007aff', // Bright blue for informational messages
+    lightGray: '#a0a0a0', // Light gray for borders or inactive elements
+    darkGray: '#2a2e35', // Darker gray for deeper elements
   },
   light: {
-    primary: '#FFFFFF', // White for primary background
-    secondary: '#F5F5F5', // Light gray for secondary elements
-    accent: '#007BFF', // Bright blue for accents and highlights
-    background: '#E0E0E0', // Light gray for background
+    primary: '#f5f5f5', // Very light gray for primary background
+    secondary: '#dcdcdc', // Light gray for secondary elements
+    accent: '#007aff', // Bright blue for accents and highlights
+    background: '#ffffff', // White for background
     opposite: '#000000', // Black for primary text
-    oppositeSecondary: '#616161', // Dark gray for secondary text
-    success: '#4CAF50', // Green for success messages
-    error: '#F44336', // Red for error messages
-    warning: '#FF9800', // Orange for warning messages
-    info: '#2196F3', // Blue for informational messages
-    lightGray: '#E0E0E0', // Light gray for borders or inactive elements
-    darkGray: '#757575', // Dark gray for deeper elements
+    oppositeSecondary: '#4f4f4f', // Dark gray for secondary text
+    success: '#34c759', // Bright green for success messages
+    error: '#ff3b30', // Bright red for error messages
+    warning: '#ffcc00', // Yellow for warning messages
+    info: '#007aff', // Bright blue for informational messages
+    lightGray: '#d3d3d3', // Light gray for borders or inactive elements
+    darkGray: '#a9a9a9', // Darker gray for deeper elements
   },
 };

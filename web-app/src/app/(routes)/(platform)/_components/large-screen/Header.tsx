@@ -2,7 +2,6 @@ import React from 'react';
 import Logo from '../Logo';
 import Link from 'next/link';
 import NavLink from '../NavLink';
-import Button from '@/app/_ui/buttons/Button';
 import {
   BookOpenIcon,
   CogIcon,

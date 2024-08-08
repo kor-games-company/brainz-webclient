@@ -1,7 +1,8 @@
-import Button from '@/app/_ui/buttons/Button';
+import StyledButton from '@/app/_ui/styled/StyledButton';
 import { auth, signOut } from '@/auth/auth';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
 import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
+import { Button } from '@headlessui/react';
 import Link from 'next/link';
 import React from 'react';
 
@@ -18,13 +19,13 @@ export default async function AuthSection() {
   return session?.user ? (
     <div>
       <form action={handleSignOut}>
-        <Button variant="outlined">{dictionary.signout}</Button>
+        <StyledButton type="submit">{dictionary.signout}</StyledButton>
       </form>
     </div>
   ) : (
     <div>
       <Link href="/signin">
-        <Button variant="outlined">{dictionary.signin}</Button>
+        <StyledButton>{dictionary.signin}</StyledButton>
       </Link>
     </div>
   );

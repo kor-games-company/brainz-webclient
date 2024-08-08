@@ -81,6 +81,9 @@ model GamePack {
   image String?
   isPublic Boolean @default(false) @map("is_public")
 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
   userId String @map("user_id")
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -101,6 +104,9 @@ model GameRoom {
   name String
   description String
   image String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   ownerId String @map("owner_id")
   owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)

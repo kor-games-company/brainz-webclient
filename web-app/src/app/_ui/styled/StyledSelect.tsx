@@ -1,12 +1,16 @@
-'use client';
-
 import React, { forwardRef } from 'react';
-import { IOption } from './IOption';
 import clsx from 'clsx';
+import { Select } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
+
+export type IOption<T> = {
+  label: string;
+  value: T;
+};
 
 type SelectProps<T> = {
   options: IOption<T>[];
-  label?: string;
+  name?: string;
   className?: string;
   value?: T;
   defaultValue?: T;
@@ -14,7 +18,7 @@ type SelectProps<T> = {
 };
 
 function SelectInner<T>(
-  { options, label, className, value, defaultValue, onChange }: SelectProps<T>,
+  { options, name, className, value, defaultValue, onChange }: SelectProps<T>,
   ref?: React.Ref<HTMLSelectElement>,
 ) {
   const optionsWithIndexes = options.map((option, index) => {
@@ -37,33 +41,36 @@ function SelectInner<T>(
     : undefined;
 
   return (
-    <>
-      {label && <label className="pl-1 text-xs">{label}</label>}
-      <select
+    <div className="relative">
+      <Select
+        name={name}
         ref={ref}
         onChange={(e) => handleOnChange(Number(e.target.value))}
         defaultValue={selectDefaultValue}
         value={selectValue}
-        className={clsx('w-full rounded bg-primary px-4 py-2 text-opposite', className)}
+        className={clsx(
+          'w-full appearance-none rounded-lg bg-primary px-4 py-2 text-opposite',
+          className,
+        )}
       >
         {optionsWithIndexes.map((option) => {
           return (
-            <option
-              key={option.index}
-              value={option.index}
-              className="bg-secondary text-oppositeSecondary"
-            >
+            <option key={option.index} value={option.index}>
               {option.label}
             </option>
           );
         })}
-      </select>
-    </>
+      </Select>
+      <ChevronDownIcon
+        className="group pointer-events-none absolute right-2.5 top-2.5 size-4 fill-opposite/60"
+        aria-hidden="true"
+      />
+    </div>
   );
 }
 
-const Select = forwardRef(SelectInner) as <T>(
+const StyledSelect = forwardRef(SelectInner) as <T>(
   props: SelectProps<T> & { ref?: React.Ref<HTMLSelectElement> },
 ) => React.ReactElement;
 
-export default Select;
+export default StyledSelect;
