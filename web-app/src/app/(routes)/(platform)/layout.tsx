@@ -12,7 +12,7 @@ export default function PlatformLayout({ children }: PropsWithChildren) {
       <ShowOn orientation="horizontal">
         <Header />
       </ShowOn>
-      <main className="px-8 py-4 xl:px-32">{children}</main>
+      <main className="bg-primary px-8 py-8 xl:px-32">{children}</main>
     </div>
   );
 }

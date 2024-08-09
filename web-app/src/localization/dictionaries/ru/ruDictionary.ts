@@ -36,7 +36,15 @@ export const ruDictionary: Dictionary = {
     play: { name: 'Играть' },
     library: { name: 'Библиотека' },
     hub: { name: 'Комнаты' },
-    workshop: { name: 'Мастерская' },
+    workshop: {
+      name: 'Мастерская',
+      description: 'Здесь ты можешь создать свои паки для игры с друзьями',
+      createPackTitle: 'Создай свою игру',
+      createPackDescription: 'Выбери тип игры, который хочешь создать',
+      createSlotsPack: 'Новая игра в слоты',
+      createTerritoryPack: 'Новая игра в территорию',
+      createQuizPack: 'Новая викторина',
+    },
     settings: { name: 'Настройки' },
   },
 };

@@ -36,7 +36,15 @@ export const enDictionary: Dictionary = {
     play: { name: 'Play' },
     library: { name: 'Library' },
     hub: { name: 'Hub' },
-    workshop: { name: 'Workshop' },
+    workshop: {
+      name: 'Workshop',
+      description: 'Here you can create your own packs to play with your friends',
+      createPackTitle: 'Create your game',
+      createPackDescription: 'Choose what game type you want to create',
+      createSlotsPack: 'New Slots game',
+      createTerritoryPack: 'New Territory game',
+      createQuizPack: 'New Quiz',
+    },
     settings: { name: 'Settings' },
   },
 };
