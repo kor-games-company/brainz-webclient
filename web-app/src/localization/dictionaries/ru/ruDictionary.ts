@@ -44,6 +44,13 @@ export const ruDictionary: Dictionary = {
       createSlotsPack: 'Новая игра в слоты',
       createTerritoryPack: 'Новая игра в территорию',
       createQuizPack: 'Новая викторина',
+      inDevelopment: 'В разработке...',
+      returnToWorkshop: 'Вернуться в мастерскую',
+      slots: {
+        createTitle: 'Создание игры в слоты',
+        createDescription:
+          'Добавь этапы, темы и вопросы, сохрани и играй в любом месте в любое время',
+      },
     },
     settings: { name: 'Настройки' },
   },

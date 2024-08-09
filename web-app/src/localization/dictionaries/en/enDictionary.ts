@@ -44,6 +44,12 @@ export const enDictionary: Dictionary = {
       createSlotsPack: 'New Slots game',
       createTerritoryPack: 'New Territory game',
       createQuizPack: 'New Quiz',
+      inDevelopment: 'In development...',
+      returnToWorkshop: 'Back to workshop',
+      slots: {
+        createTitle: 'Create Slots game',
+        createDescription: 'Add stages, topics and questions, save and play anywhere',
+      },
     },
     settings: { name: 'Settings' },
   },

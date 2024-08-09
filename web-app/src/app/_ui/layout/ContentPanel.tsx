@@ -6,5 +6,14 @@ type Props = {
 };
 
 export default function ContentPanel({ children, className }: PropsWithChildren<Props>) {
-  return <div className={clsx('rounded-lg bg-secondary p-4 shadow-md', className)}>{children}</div>;
+  return (
+    <div
+      className={clsx(
+        'cursor-default select-none rounded-lg bg-secondary p-4 shadow-md',
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
 }

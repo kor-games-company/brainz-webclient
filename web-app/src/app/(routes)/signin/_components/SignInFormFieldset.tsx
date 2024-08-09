@@ -3,6 +3,7 @@
 import useLocalization from '@/app/_hooks/useLocalization';
 import StyledButton from '@/app/_ui/styled/StyledButton';
 import { StyledInput } from '@/app/_ui/styled/StyledInput';
+import StyledTextLink from '@/app/_ui/styled/StyledTextLink';
 import { signIn } from '@/auth/auth';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
 import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
@@ -38,11 +39,7 @@ export default function SignInFormFieldset() {
       </div>
       {!formStatus.pending && (
         <div>
-          <Link href={'/'}>
-            <span className="text-oppositeSecondary text-sm underline hover:text-opposite">
-              {dictionary.continueWithoutSigning}
-            </span>
-          </Link>
+          <StyledTextLink href="/" label={dictionary.continueWithoutSigning} />
         </div>
       )}
     </Fieldset>
