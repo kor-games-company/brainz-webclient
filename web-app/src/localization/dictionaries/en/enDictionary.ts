@@ -14,14 +14,6 @@ export const enDictionary: Dictionary = {
   development: {
     developerPanel: 'Developer Panel',
   },
-  navigation: {
-    home: 'Home',
-    play: 'Play',
-    library: 'Library',
-    hub: 'Hub',
-    workshop: 'Workshop',
-    settings: 'Settings',
-  },
   metadata: {
     rootDescription: 'Have fun with your friends!',
   },
@@ -38,5 +30,13 @@ export const enDictionary: Dictionary = {
   schema: {
     string: 'Field should not be empty',
     email: 'Field should be a valid email address',
+  },
+  pages: {
+    home: { home: 'Home' },
+    play: { play: 'Play' },
+    library: { library: 'Library' },
+    hub: { hub: 'Hub' },
+    workshop: { workshop: 'Workshop' },
+    settings: { settings: 'Settings' },
   },
 };

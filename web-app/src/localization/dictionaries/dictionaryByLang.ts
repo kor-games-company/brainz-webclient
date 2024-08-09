@@ -1,3 +1,4 @@
+import 'server-only';
 import { Language } from '../types';
 import { Dictionary } from './Dictionary';
 import { enDictionary } from './en/enDictionary';

@@ -1,3 +1,4 @@
+import 'server-only';
 import { FALLBACK_LANGUAGE } from '@/localization/constants';
 import { Language } from '@/localization/types';
 import { FALLBACK_THEME } from '@/theme/constants';

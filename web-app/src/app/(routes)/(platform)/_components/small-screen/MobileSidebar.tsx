@@ -13,22 +13,22 @@ import { auth } from '@/auth/auth';
 import Logo from '../Logo';
 import NavLink from '../NavLink';
 import MobileSidebarUserBadge from './MobileSidebarUserBadge';
+import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 
 export default async function MobileSidebar() {
-  const lang = getLangFromCookies();
-  const dictionary = dictionaryByLang[lang];
+  const dictionary = getCurrentDictionary();
   const session = await auth();
 
   const links = [
-    { href: '/', label: dictionary.navigation.home, icon: <HomeIcon className="h-6 w-6" /> },
+    { href: '/', label: dictionary.pages.home.home, icon: <HomeIcon className="h-6 w-6" /> },
     {
       href: '/play',
-      label: dictionary.navigation.play,
+      label: dictionary.pages.play.play,
       icon: <PuzzlePieceIcon className="h-6 w-6" />,
     },
     {
       href: '/library',
-      label: dictionary.navigation.library,
+      label: dictionary.pages.library.library,
       icon: <BookOpenIcon className="h-6 w-6" />,
     },
   ];
@@ -37,17 +37,17 @@ export default async function MobileSidebar() {
     links.push(
       {
         href: '/hub',
-        label: dictionary.navigation.hub,
+        label: dictionary.pages.hub.hub,
         icon: <ChatBubbleBottomCenterIcon className="h-6 w-6" />,
       },
       {
         href: '/workshop',
-        label: dictionary.navigation.workshop,
+        label: dictionary.pages.workshop.workshop,
         icon: <CogIcon className="h-6 w-6" />,
       },
       {
         href: '/settings',
-        label: dictionary.navigation.settings,
+        label: dictionary.pages.settings.settings,
         icon: <Cog6ToothIcon className="h-6 w-6" />,
       },
     );

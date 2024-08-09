@@ -13,21 +13,21 @@ import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
 import UserBadge from './UserBadge';
 import { auth } from '@/auth/auth';
 import StyledButton from '@/app/_ui/styled/StyledButton';
+import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 
 export default async function Header() {
-  const lang = getLangFromCookies();
-  const dictionary = dictionaryByLang[lang];
+  const dictionary = getCurrentDictionary();
   const session = await auth();
 
   const links = [
     {
       href: '/play',
-      label: dictionary.navigation.play,
+      label: dictionary.pages.play.play,
       icon: <PuzzlePieceIcon className="h-6 w-6" />,
     },
     {
       href: '/library',
-      label: dictionary.navigation.library,
+      label: dictionary.pages.library.library,
       icon: <BookOpenIcon className="h-6 w-6" />,
     },
   ];
@@ -35,7 +35,7 @@ export default async function Header() {
   if (session?.user) {
     links.push({
       href: '/hub',
-      label: dictionary.navigation.hub,
+      label: dictionary.pages.hub.hub,
       icon: <ChatBubbleBottomCenterIcon className="h-6 w-6" />,
     });
   }

@@ -17,6 +17,7 @@ import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
 import Link from 'next/link';
 import { ArrowLeftStartOnRectangleIcon, Cog6ToothIcon, CogIcon } from '@heroicons/react/24/outline';
 import UserBadgeNavLink from './UserBadgeNavLink';
+import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 
 export default async function UserBadge() {
   const session = await auth();
@@ -25,11 +26,10 @@ export default async function UserBadge() {
 
   const userName = session.user.name ?? session.user.email ?? 'Unknown';
 
+  const dictionary = getCurrentDictionary();
+
   const theme = getThemeFromCookies();
   const colors = THEMES_COLORS[theme];
-
-  const lang = getLangFromCookies();
-  const dictionary = dictionaryByLang[lang];
 
   const handleSignOut = async () => {
     'use server';
@@ -64,14 +64,14 @@ export default async function UserBadge() {
           <MenuItem>
             <UserBadgeNavLink
               icon={<CogIcon className="h-6 w-6" />}
-              label={dictionary.navigation.workshop}
+              label={dictionary.pages.workshop.workshop}
               href="/workshop"
             />
           </MenuItem>
           <MenuItem>
             <UserBadgeNavLink
               icon={<Cog6ToothIcon className="h-6 w-6" />}
-              label={dictionary.navigation.settings}
+              label={dictionary.pages.settings.settings}
               href="/settings"
             />
           </MenuItem>

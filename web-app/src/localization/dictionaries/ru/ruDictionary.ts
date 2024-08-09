@@ -14,14 +14,6 @@ export const ruDictionary: Dictionary = {
   development: {
     developerPanel: 'Панель разработчика',
   },
-  navigation: {
-    home: 'Главная',
-    play: 'Играть',
-    library: 'Библиотека',
-    hub: 'Комнаты',
-    workshop: 'Мастерская',
-    settings: 'Настройки',
-  },
   metadata: {
     rootDescription: 'Повеселитесь!',
   },
@@ -38,5 +30,13 @@ export const ruDictionary: Dictionary = {
   schema: {
     string: 'Поле должно быть не пустой строкой',
     email: 'Поле должно быть коректной почтой',
+  },
+  pages: {
+    home: { home: 'Главная' },
+    play: { play: 'Играть' },
+    library: { library: 'Библиотека' },
+    hub: { hub: 'Комнаты' },
+    workshop: { workshop: 'Мастерская' },
+    settings: { settings: 'Настройки' },
   },
 };

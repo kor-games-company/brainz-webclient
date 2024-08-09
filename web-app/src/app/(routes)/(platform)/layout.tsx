@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react';
 import Header from './_components/large-screen/Header';
-import MobilePanel from './_components/small-screen/MobilePanel';
 import MobileHeader from './_components/small-screen/MobileHeader';
 import ShowOn from '@/app/_ui/layout/ShowOn';
 
@@ -13,10 +12,7 @@ export default function PlatformLayout({ children }: PropsWithChildren) {
       <ShowOn orientation="horizontal">
         <Header />
       </ShowOn>
-      <div>{children}</div>
-      {/* <ShowOn orientation="vertical">
-        <MobilePanel />
-      </ShowOn> */}
+      <main className="px-8 py-4 xl:px-32">{children}</main>
     </div>
   );
 }

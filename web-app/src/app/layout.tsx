@@ -6,12 +6,12 @@ import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
 import AppContainer from './_components/AppContainer';
 import ProvidersContainer from './_components/ProvidersContainer';
 import '@/globals.css';
+import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export async function generateMetadata() {
-  const lang = getLangFromCookies();
-  const dictionary = dictionaryByLang[lang];
+  const dictionary = getCurrentDictionary();
 
   return {
     title: {
