@@ -32,11 +32,11 @@ export const enDictionary: Dictionary = {
     email: 'Field should be a valid email address',
   },
   pages: {
-    home: { home: 'Home' },
-    play: { play: 'Play' },
-    library: { library: 'Library' },
-    hub: { hub: 'Hub' },
-    workshop: { workshop: 'Workshop' },
-    settings: { settings: 'Settings' },
+    home: { name: 'Home' },
+    play: { name: 'Play' },
+    library: { name: 'Library' },
+    hub: { name: 'Hub' },
+    workshop: { name: 'Workshop' },
+    settings: { name: 'Settings' },
   },
 };

@@ -22,12 +22,12 @@ export default async function Header() {
   const links = [
     {
       href: '/play',
-      label: dictionary.pages.play.play,
+      label: dictionary.pages.play.name,
       icon: <PuzzlePieceIcon className="h-6 w-6" />,
     },
     {
       href: '/library',
-      label: dictionary.pages.library.library,
+      label: dictionary.pages.library.name,
       icon: <BookOpenIcon className="h-6 w-6" />,
     },
   ];
@@ -35,7 +35,7 @@ export default async function Header() {
   if (session?.user) {
     links.push({
       href: '/hub',
-      label: dictionary.pages.hub.hub,
+      label: dictionary.pages.hub.name,
       icon: <ChatBubbleBottomCenterIcon className="h-6 w-6" />,
     });
   }

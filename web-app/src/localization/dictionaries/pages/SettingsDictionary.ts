@@ -1,3 +1,4 @@
 export type SettingsDictionary = {
-  settings: string;
+  name: string;
+  description: string;
 };

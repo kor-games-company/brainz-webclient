@@ -1,3 +1,4 @@
 export type LibraryDictionary = {
-  library: string;
+  name: string;
+  description: string;
 };

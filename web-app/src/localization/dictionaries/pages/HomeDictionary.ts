@@ -1,3 +1,4 @@
 export type HomeDictionary = {
-  home: string;
+  name: string;
+  description: string;
 };

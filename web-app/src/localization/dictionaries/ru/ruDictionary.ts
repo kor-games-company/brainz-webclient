@@ -32,11 +32,11 @@ export const ruDictionary: Dictionary = {
     email: 'Поле должно быть коректной почтой',
   },
   pages: {
-    home: { home: 'Главная' },
-    play: { play: 'Играть' },
-    library: { library: 'Библиотека' },
-    hub: { hub: 'Комнаты' },
-    workshop: { workshop: 'Мастерская' },
-    settings: { settings: 'Настройки' },
+    home: { name: 'Главная' },
+    play: { name: 'Играть' },
+    library: { name: 'Библиотека' },
+    hub: { name: 'Комнаты' },
+    workshop: { name: 'Мастерская' },
+    settings: { name: 'Настройки' },
   },
 };

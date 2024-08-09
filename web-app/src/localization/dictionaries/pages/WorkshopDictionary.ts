@@ -1,3 +1,4 @@
 export type WorkshopDictionary = {
-  workshop: string;
+  name: string;
+  description: string;
 };

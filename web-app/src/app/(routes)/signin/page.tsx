@@ -1,5 +1,5 @@
 import { signIn } from '@/auth/auth';
-import SignInFormFieldset from './SignInFormFieldset';
+import SignInFormFieldset from './_components/SignInFormFieldset';
 
 export default function SignIn() {
   return (

@@ -1,3 +1,4 @@
 export type PlayDictionary = {
-  play: string;
+  name: string;
+  description: string;
 };

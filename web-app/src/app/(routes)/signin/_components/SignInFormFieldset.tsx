@@ -39,7 +39,7 @@ export default function SignInFormFieldset() {
       {!formStatus.pending && (
         <div>
           <Link href={'/'}>
-            <span className="text-sm text-oppositeSecondary underline hover:text-opposite">
+            <span className="text-oppositeSecondary text-sm underline hover:text-opposite">
               {dictionary.continueWithoutSigning}
             </span>
           </Link>

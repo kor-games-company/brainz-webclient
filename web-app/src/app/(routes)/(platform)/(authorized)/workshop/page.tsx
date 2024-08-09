@@ -8,7 +8,7 @@ export default function WorkshopPage() {
 
   return (
     <article>
-      <h1>Workshop</h1>
+      <h1>{dictionary.pages.workshop.name}</h1>
       <p></p>
     </article>
   );

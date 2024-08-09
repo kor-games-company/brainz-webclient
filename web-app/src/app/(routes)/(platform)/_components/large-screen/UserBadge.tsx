@@ -64,14 +64,14 @@ export default async function UserBadge() {
           <MenuItem>
             <UserBadgeNavLink
               icon={<CogIcon className="h-6 w-6" />}
-              label={dictionary.pages.workshop.workshop}
+              label={dictionary.pages.workshop.name}
               href="/workshop"
             />
           </MenuItem>
           <MenuItem>
             <UserBadgeNavLink
               icon={<Cog6ToothIcon className="h-6 w-6" />}
-              label={dictionary.pages.settings.settings}
+              label={dictionary.pages.settings.name}
               href="/settings"
             />
           </MenuItem>

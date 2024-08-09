@@ -20,15 +20,15 @@ export default async function MobileSidebar() {
   const session = await auth();
 
   const links = [
-    { href: '/', label: dictionary.pages.home.home, icon: <HomeIcon className="h-6 w-6" /> },
+    { href: '/', label: dictionary.pages.home.name, icon: <HomeIcon className="h-6 w-6" /> },
     {
       href: '/play',
-      label: dictionary.pages.play.play,
+      label: dictionary.pages.play.name,
       icon: <PuzzlePieceIcon className="h-6 w-6" />,
     },
     {
       href: '/library',
-      label: dictionary.pages.library.library,
+      label: dictionary.pages.library.name,
       icon: <BookOpenIcon className="h-6 w-6" />,
     },
   ];
@@ -37,17 +37,17 @@ export default async function MobileSidebar() {
     links.push(
       {
         href: '/hub',
-        label: dictionary.pages.hub.hub,
+        label: dictionary.pages.hub.name,
         icon: <ChatBubbleBottomCenterIcon className="h-6 w-6" />,
       },
       {
         href: '/workshop',
-        label: dictionary.pages.workshop.workshop,
+        label: dictionary.pages.workshop.name,
         icon: <CogIcon className="h-6 w-6" />,
       },
       {
         href: '/settings',
-        label: dictionary.pages.settings.settings,
+        label: dictionary.pages.settings.name,
         icon: <Cog6ToothIcon className="h-6 w-6" />,
       },
     );

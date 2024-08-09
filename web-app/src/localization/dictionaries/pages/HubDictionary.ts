@@ -1,3 +1,4 @@
 export type HubDictionary = {
-  hub: string;
+  name: string;
+  description: string;
 };
