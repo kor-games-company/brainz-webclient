@@ -1,4 +1,6 @@
 export type SchemaValidationDictionary = {
   string: string;
-  email: string;
+  minLength: string;
+  maxLength: string;
+  image: string;
 };

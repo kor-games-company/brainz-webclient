@@ -81,7 +81,7 @@ export default async function UserBadge() {
           <MenuItem>
             <form
               action={handleSignOut}
-              className="hover:bg-opposite/20 mb-1 cursor-pointer p-2 pb-3 transition-colors duration-200 ease-linear"
+              className="mb-1 cursor-pointer p-2 pb-3 transition-colors duration-200 ease-linear hover:bg-opposite/20"
             >
               <button type="submit" className="flex h-full w-full items-center gap-2">
                 <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />

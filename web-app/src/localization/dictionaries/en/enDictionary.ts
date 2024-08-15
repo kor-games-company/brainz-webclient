@@ -29,7 +29,9 @@ export const enDictionary: Dictionary = {
   },
   schema: {
     string: 'Field should not be empty',
-    email: 'Field should be a valid email address',
+    minLength: 'Field length should be more or equal to {arg1}',
+    maxLength: 'Field length should be less or equal to {arg1}',
+    image: 'Image should be specified',
   },
   pages: {
     home: { name: 'Home' },

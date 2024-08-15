@@ -78,7 +78,7 @@ model GamePack {
   name String
   description String
   gameType GameType
-  image String?
+  imageUrl String
   isPublic Boolean @default(false) @map("is_public")
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -103,7 +103,7 @@ model GameRoom {
   isPublic Boolean @map("is_public")
   name String
   description String
-  image String?
+  imageUrl String?
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -135,7 +135,7 @@ model SlotsStage {
   number Int
   name String
   description String
-  image String?
+  imageUrl String?
 
   packId String @map("pack_id")
   pack SlotsPack @relation(fields: [packId], references: [packId], onDelete: Cascade)

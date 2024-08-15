@@ -8,6 +8,7 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 import BackToWorkshopLink from '../../_components/BackToWorkshopLink';
 import { WorkshopDictionary } from '@/localization/dictionaries/pages/WorkshopDictionary';
+import CreatePackForm from '../../_components/CreatePackForm';
 
 type Props = {
   params: {
@@ -28,7 +29,9 @@ export default function CreateGamePackPage({ params: { gameType: gameTypeStr } }
         <BackToWorkshopLink />
       </div>
       <PageHeader name={title} description={description} />
-      <ContentPanel></ContentPanel>
+      <ContentPanel>
+        <CreatePackForm gameType={gameType} />
+      </ContentPanel>
     </article>
   );
 }

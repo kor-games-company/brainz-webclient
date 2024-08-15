@@ -18,7 +18,7 @@ function StyledButton(
       className={clsx(
         'rounded-md px-4 py-2 transition-colors duration-200 ease-linear disabled:cursor-not-allowed',
         {
-          'bg-opposite text-primary hover:bg-oppositeSecondary disabled:hover:bg-opposite':
+          'bg-opposite text-primary hover:bg-opposite-secondary disabled:hover:bg-opposite':
             variant === 'solid',
           'border border-opposite bg-transparent text-opposite hover:bg-opposite/10 disabled:hover:bg-transparent':
             variant === 'outlined',
