@@ -32,8 +32,9 @@ export default function CreatePackForm({ gameType }: Props) {
   return (
     <form action={formAction}>
       <Fieldset className="flex flex-col gap-6 rounded-md" disabled={pending}>
-        <Legend className="text-xl font-medium">
-          {workshopDictionary.createPackFieldsetLegend}
+        <Legend>
+          <h3 className="text-xl font-medium">{workshopDictionary.createPackFieldsetLegend}</h3>
+          <p className="text-sm text-opposite-secondary">Example description</p>
         </Legend>
         <div className="flex flex-col gap-6 xl:flex-row">
           <div className="flex flex-col gap-6 xl:w-3/5">
@@ -43,7 +44,7 @@ export default function CreatePackForm({ gameType }: Props) {
             </Field>
             <Field className="flex flex-col">
               <Label>{workshopDictionary.createPackFieldDescription}</Label>
-              <StyledTextarea name="description" rows={5} />
+              <StyledTextarea name="description" rows={8} className="resize-none" />
             </Field>
           </div>
           <div className="xl:w-2/5">
@@ -53,11 +54,15 @@ export default function CreatePackForm({ gameType }: Props) {
             </Field>
           </div>
         </div>
-        <div className="flex gap-6">
-          <StyledButton variant="outlined" className="flex-1" onClick={handleClickBack}>
+        <div className="flex gap-6 xl:justify-center">
+          <StyledButton
+            variant="outlined"
+            className="flex-1 xl:w-28 xl:flex-none"
+            onClick={handleClickBack}
+          >
             Back
           </StyledButton>
-          <StyledButton type="submit" className="flex-1">
+          <StyledButton type="submit" className="flex-1 xl:w-28 xl:flex-none">
             Create
           </StyledButton>
         </div>
