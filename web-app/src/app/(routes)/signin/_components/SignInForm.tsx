@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import useLocalization from '@/app/_hooks/useLocalization';
 import StyledButton from '@/app/_ui/styled/StyledButton';
 import { StyledInput } from '@/app/_ui/styled/StyledInput';
@@ -13,7 +14,7 @@ export default function SignInForm() {
     dictionary: { auth: dictionary },
   } = useLocalization();
 
-  const [formState, formAction, pending] = useActionState(resendSignInAction, undefined);
+  const [_, formAction, pending] = useActionState(resendSignInAction, undefined);
 
   return (
     <form action={formAction}>

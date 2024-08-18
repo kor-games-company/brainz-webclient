@@ -2,6 +2,7 @@ import { PropsWithChildren } from 'react';
 import Header from './_components/large-screen/Header';
 import MobileHeader from './_components/small-screen/MobileHeader';
 import ShowOn from '@/app/_ui/layout/ShowOn';
+import React from 'react';
 
 export default function PlatformLayout({ children }: PropsWithChildren) {
   return (

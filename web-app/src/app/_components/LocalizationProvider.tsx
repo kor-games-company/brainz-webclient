@@ -7,6 +7,7 @@ import { Dictionary } from '../../localization/dictionaries/Dictionary';
 import { enDictionary } from '../../localization/dictionaries/en/enDictionary';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/navigation';
+import React from 'react';
 
 type LocalizationContextType = {
   lang: Language;
@@ -25,7 +26,7 @@ export default function LocalizationProvider({
   lang,
   dictionary,
 }: PropsWithChildren<{ lang: Language; dictionary: Dictionary }>) {
-  const [cookies, setCookies] = useCookies();
+  const [_, setCookies] = useCookies();
   const router = useRouter();
 
   function changeLang(lang: Language) {

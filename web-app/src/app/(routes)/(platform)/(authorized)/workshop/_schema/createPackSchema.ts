@@ -1,5 +1,4 @@
 import { Dictionary } from '@/localization/dictionaries/Dictionary';
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 import interpolate from '@/utils/strings/interpolate';
 import { z } from 'zod';
 

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { Language } from '../localization/types';
 import { FALLBACK_LANGUAGE, SUPPORTED_LANGUAGES } from '../localization/constants';
 import { AppNextRequest } from '@/middleware';

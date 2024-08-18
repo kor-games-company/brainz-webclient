@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
+
 import { Button } from '@headlessui/react';
 import clsx from 'clsx';
-import Link from 'next/link';
 import React, { PropsWithChildren, Ref } from 'react';
 
 type Props = { variant?: 'solid' | 'outlined' } & PropsWithChildren<

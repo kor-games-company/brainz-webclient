@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useCookies } from 'react-cookie';
 import { Theme } from '../../theme/types';
-import { useRouter } from 'next/navigation';
 import { Language } from '../../localization/types';
 import useLocalization from '../_hooks/useLocalization';
 import useTheme from '../_hooks/useTheme';

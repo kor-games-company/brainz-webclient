@@ -1,4 +1,5 @@
 import DeveloperPanel from '@/app/_components/DeveloperPanel';
+import React from 'react';
 
 export default function PlatformPage() {
   return (

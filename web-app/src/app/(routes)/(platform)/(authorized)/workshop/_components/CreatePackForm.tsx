@@ -11,7 +11,7 @@ type Props = {
 
 export default function CreatePackForm({ gameType }: Props) {
   const createPackActionWithGameType = createPackAction.bind(null, gameType);
-  const [state, formAction, pending] = useActionState(createPackActionWithGameType, undefined);
+  const [_, formAction] = useActionState(createPackActionWithGameType, undefined);
 
   return (
     <form action={formAction}>

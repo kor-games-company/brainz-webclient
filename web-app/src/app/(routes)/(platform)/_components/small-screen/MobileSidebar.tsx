@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   BookOpenIcon,
   Cog6ToothIcon,
@@ -7,13 +6,12 @@ import {
   PuzzlePieceIcon,
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
-import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
-import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
 import { auth } from '@/auth/auth';
 import Logo from '../Logo';
 import NavLink from '../NavLink';
 import MobileSidebarUserBadge from './MobileSidebarUserBadge';
 import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import React from 'react';
 
 export default async function MobileSidebar() {
   const dictionary = getCurrentDictionary();

@@ -5,6 +5,6 @@ type Props = {
   pack: GamePack;
 };
 
-export default function UserPackCard({ pack }: Props) {
+export default function UserPackCard({ pack: _ }: Props) {
   return <div>UserPackCard</div>;
 }

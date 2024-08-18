@@ -5,6 +5,7 @@ import { Theme, ThemeColors } from '../../theme/types';
 import { FALLBACK_THEME, THEMES_COLORS } from '../../theme/constants';
 import { useRouter } from 'next/navigation';
 import { useCookies } from 'react-cookie';
+import React from 'react';
 
 type ThemeContextType = {
   theme: Theme;
@@ -19,7 +20,7 @@ export const ThemeContext = createContext<ThemeContextType>({
 });
 
 export default function ThemeProvider({ children, theme }: PropsWithChildren<{ theme: Theme }>) {
-  const [cookies, setCookies] = useCookies();
+  const [_, setCookies] = useCookies();
   const router = useRouter();
 
   function changeTheme(theme: Theme) {

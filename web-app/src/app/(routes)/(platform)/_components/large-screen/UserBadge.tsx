@@ -1,6 +1,5 @@
 import { auth, signOut } from '@/auth/auth';
-import { THEMES_COLORS } from '@/theme/constants';
-import { getLangFromCookies, getThemeFromCookies } from '@/utils/cookies/cookies.utils';
+import { getThemeFromCookies } from '@/utils/cookies/cookies.utils';
 import {
   Menu,
   MenuButton,
@@ -9,15 +8,11 @@ import {
   MenuSection,
   MenuSeparator,
 } from '@headlessui/react';
-import { PencilIcon } from '@heroicons/react/20/solid';
-import React from 'react';
-import Image from 'next/image';
 import ProfileIcon from '../ProfileIcon';
-import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
-import Link from 'next/link';
 import { ArrowLeftStartOnRectangleIcon, Cog6ToothIcon, CogIcon } from '@heroicons/react/24/outline';
 import UserBadgeNavLink from './UserBadgeNavLink';
 import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import React from 'react';
 
 export default async function UserBadge() {
   const session = await auth();
@@ -29,7 +24,6 @@ export default async function UserBadge() {
   const dictionary = getCurrentDictionary();
 
   const theme = getThemeFromCookies();
-  const colors = THEMES_COLORS[theme];
 
   const handleSignOut = async () => {
     'use server';

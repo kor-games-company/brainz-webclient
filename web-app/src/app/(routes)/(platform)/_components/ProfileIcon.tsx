@@ -1,7 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import { getThemeFromCookies } from '@/utils/cookies/cookies.utils';
-import { THEMES_COLORS } from '@/theme/constants';
 
 type Props = {
   name: string;
@@ -9,9 +7,6 @@ type Props = {
 };
 
 export default function ProfileIcon({ name, imageSrc }: Props) {
-  const theme = getThemeFromCookies();
-  const colors = THEMES_COLORS[theme];
-
   const initials = name.substring(0, 2);
 
   return imageSrc ? (

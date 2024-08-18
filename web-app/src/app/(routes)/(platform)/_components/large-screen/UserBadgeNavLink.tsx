@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import useIsActiveLink from '../../_hooks/useIsActiveLink';
 import clsx from 'clsx';
+import React from 'react';
 
 export default function UserBadgeNavLink({
   icon,
@@ -18,7 +19,7 @@ export default function UserBadgeNavLink({
     <Link
       href={href}
       className={clsx(
-        'hover:bg-opposite/20 flex h-full w-full items-center gap-2 px-2 py-3 transition-colors duration-200 ease-linear',
+        'flex h-full w-full items-center gap-2 px-2 py-3 transition-colors duration-200 ease-linear hover:bg-opposite/20',
         {
           'bg-opposite/10': isActive,
         },

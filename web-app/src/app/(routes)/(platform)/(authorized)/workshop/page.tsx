@@ -26,7 +26,7 @@ export default async function WorkshopPage() {
 
   const session = await auth();
 
-  const packs = await getUserPacks(session?.user?.id!);
+  const packs = await getUserPacks(session!.user!.id!);
 
   return (
     <article className="flex flex-col items-stretch gap-4">
@@ -36,7 +36,7 @@ export default async function WorkshopPage() {
           <h1 className="text-xl font-medium">Your packs</h1>
           <div>
             {packs.map((pack) => (
-              <UserPackCard pack={pack} />
+              <UserPackCard key={pack.id} pack={pack} />
             ))}
           </div>
         </ContentPanel>

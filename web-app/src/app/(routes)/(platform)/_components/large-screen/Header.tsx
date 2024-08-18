@@ -4,12 +4,9 @@ import Link from 'next/link';
 import NavLink from '../NavLink';
 import {
   BookOpenIcon,
-  CogIcon,
   PuzzlePieceIcon,
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
-import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';
-import { getLangFromCookies } from '@/utils/cookies/cookies.utils';
 import UserBadge from './UserBadge';
 import { auth } from '@/auth/auth';
 import StyledButton from '@/app/_ui/styled/StyledButton';

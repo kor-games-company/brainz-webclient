@@ -1,6 +1,5 @@
 import PageHeader from '@/app/(routes)/(platform)/_components/PageHeader';
 import ContentPanel from '@/app/_ui/layout/ContentPanel';
-import StyledTextLink from '@/app/_ui/styled/StyledTextLink';
 import { isGameType } from '@/utils/enums/isInEnum';
 import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 import { GameType } from '@prisma/client';

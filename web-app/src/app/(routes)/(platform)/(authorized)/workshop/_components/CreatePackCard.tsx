@@ -1,6 +1,5 @@
 import StyledTooltip from '@/app/_ui/styled/StyledTooltip';
 import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
-import { GameType } from '@prisma/client';
 import clsx from 'clsx';
 import React from 'react';
 

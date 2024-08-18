@@ -13,6 +13,14 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    // Add your custom ESLint rules here
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
   },
 };

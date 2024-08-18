@@ -1,6 +1,6 @@
 import { auth } from '@/auth/auth';
 import { RedirectType, redirect } from 'next/navigation';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 export default async function AuthorizedLayout({ children }: PropsWithChildren) {
   const session = await auth();
