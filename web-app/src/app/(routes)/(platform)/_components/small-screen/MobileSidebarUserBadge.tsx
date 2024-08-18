@@ -20,13 +20,13 @@ export default async function MobileSidebarUserBadge() {
 
   return (
     <div className="flex cursor-default select-none items-center justify-between px-6 py-4">
-      <div className="flex items-center gap-4">
-        <div className="h-10 w-10">
+      <div className="flex items-center gap-4 overflow-hidden">
+        <div className="h-10 w-10 flex-shrink-0">
           <ProfileIcon name={userName} imageSrc={session.user.image} />
         </div>
-        <p>{userName}</p>
+        <p className="max-w-full truncate">{userName}</p>
       </div>
-      <form action={handleSignOut}>
+      <form action={handleSignOut} className="flex-shrink-0">
         <StyledButton type="submit" className="flex h-full w-full items-center gap-2">
           <ArrowLeftStartOnRectangleIcon className="h-6 w-6" />
           <span>{dictionary.auth.signout}</span>
