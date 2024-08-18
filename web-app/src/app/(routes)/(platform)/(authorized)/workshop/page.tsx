@@ -43,9 +43,9 @@ export default async function WorkshopPage() {
       )}
       <ContentPanel className="flex flex-col items-stretch gap-4">
         <div>
-          <h1 className="text-xl font-medium">{workshopDictionary.createPackTitle}</h1>
+          <h1 className="text-xl font-medium">{workshopDictionary.createGameTitle}</h1>
           <p className="font-medium text-opposite-secondary">
-            {workshopDictionary.createPackDescription}
+            {workshopDictionary.createGameDescription}
           </p>
         </div>
         <div className="grid grid-cols-1 gap-x-12 gap-y-6 xl:grid-cols-3">

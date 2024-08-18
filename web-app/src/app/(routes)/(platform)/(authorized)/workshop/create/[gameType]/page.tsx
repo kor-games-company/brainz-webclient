@@ -5,9 +5,9 @@ import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 import { GameType } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import React from 'react';
-import BackToWorkshopLink from '../../_components/BackToWorkshopLink';
+import BackToWorkshopLink from './_components/BackToWorkshopLink';
 import { WorkshopDictionary } from '@/localization/dictionaries/pages/WorkshopDictionary';
-import CreatePackForm from '../../_components/CreatePackForm';
+import CreatePackForm from './_components/CreatePackForm';
 
 type Props = {
   params: {

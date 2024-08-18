@@ -20,16 +20,18 @@
 
 /* Light Theme Colors */
 .theme-light {
-  --color-primary: 245 245 245;
-  --color-secondary: 220 220 220;
-  --color-accent: 0 122 255;
-  --color-background: 255 255 255;
-  --color-opposite: 0 0 0;
-  --color-opposite-secondary: 79 79 79;
-  --color-success: 52 199 89;
-  --color-error: 255 59 48;
-  --color-warning: 255 204 0;
-  --color-info: 0 122 255;
-  --color-light-gray: 211 211 211;
-  --color-dark-gray: 169 169 169;
+  --color-primary: 240 248 255; /* Light cyan, very soft and airy */
+  --color-secondary: 224 238 242; /* Pale cyan-gray, light and calm */
+  --color-accent: 0 172 193; /* Vibrant cyan, for contrast and highlights */
+  --color-background: 245 255 255; /* Very light cyan, almost white */
+  --color-opposite: 38 50 56; /* Dark cyan-gray, cool and strong */
+  --color-opposite-secondary: 85 110 115; /* Medium cyan-gray */
+  --color-success: 112 219 205; /* Soft mint green, complements the cyan tones */
+  --color-error: 229 92 79; /* Muted coral red, for alerts */
+  --color-warning: 255 204 77; /* Warm sandy yellow, for contrast */
+  --color-info: 0 172 193; /* Same as accent for consistency */
+  --color-light-gray: 211 224 230; /* Light cool gray, blends with cyan tones */
+  --color-dark-gray: 125 145 150; /* Medium cool gray */
+  --color-light-cyan: 202 245 255; /* Fresh light cyan, adds vibrancy */
+  --color-dark-cyan: 0 139 153; /* Deep cyan, cool and strong */
 }

@@ -1,21 +1,19 @@
 'use client';
 
 import { PropsWithChildren, createContext } from 'react';
-import { Theme, ThemeColors } from '../../theme/types';
-import { FALLBACK_THEME, THEMES_COLORS } from '../../theme/constants';
+import { Theme } from '../../theme/types';
+import { FALLBACK_THEME } from '../../theme/constants';
 import { useRouter } from 'next/navigation';
 import { useCookies } from 'react-cookie';
 import React from 'react';
 
 type ThemeContextType = {
   theme: Theme;
-  colors: ThemeColors;
   changeTheme: (theme: Theme) => void;
 };
 
 export const ThemeContext = createContext<ThemeContextType>({
   theme: FALLBACK_THEME,
-  colors: THEMES_COLORS[FALLBACK_THEME],
   changeTheme: () => {},
 });
 
@@ -27,9 +25,5 @@ export default function ThemeProvider({ children, theme }: PropsWithChildren<{ t
     setCookies('theme', theme);
     router.refresh();
   }
-  return (
-    <ThemeContext.Provider value={{ theme, colors: THEMES_COLORS[theme], changeTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  return <ThemeContext.Provider value={{ theme, changeTheme }}>{children}</ThemeContext.Provider>;
 }
