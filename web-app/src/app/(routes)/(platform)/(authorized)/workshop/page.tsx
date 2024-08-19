@@ -1,5 +1,4 @@
 import ContentPanel from '@/app/_ui/layout/ContentPanel';
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 import React from 'react';
 import PageHeader from '../../_components/PageHeader';
 import CreatePackCard from './_components/CreatePackCard';
@@ -7,23 +6,21 @@ import Image from 'next/image';
 import slotsImage from '@/../public/slots.webp';
 import territoryImage from '@/../public/territory.webp';
 import quizImage from '@/../public/quiz.png';
-import { auth } from '@/infrastructure/auth/auth';
+import { auth } from '@/core/infrastructure/auth/auth';
 import UserPackCard from './_components/UserPackCard';
 import Link from 'next/link';
-import { packsRepo } from '@/infrastructure/data/packs/getPacksRepo';
-import { GameType } from '@/domain/games/GameType';
+import { GameTypeEnum } from '@/core/domain/valueObjects/GameType';
+import getCurrentDictionary from '@/shared/localization/getCurrentDictionary';
 
 export default async function WorkshopPage() {
   const workshopDictionary = getCurrentDictionary().pages.workshop;
 
   const session = await auth();
 
-  const packs = await packsRepo.getUserPacks(session!.user!.id!);
-
   return (
     <article className="flex flex-col items-stretch gap-4">
       <PageHeader name={workshopDictionary.name} description={workshopDictionary.description} />
-      {packs.length > 0 && (
+      {/* {packs.length > 0 && (
         <ContentPanel>
           <h1 className="text-xl font-medium">Your packs</h1>
           <div>
@@ -32,7 +29,7 @@ export default async function WorkshopPage() {
             ))}
           </div>
         </ContentPanel>
-      )}
+      )} */}
       <ContentPanel className="flex flex-col items-stretch gap-4">
         <div>
           <h1 className="text-xl font-medium">{workshopDictionary.createGameTitle}</h1>
@@ -41,7 +38,7 @@ export default async function WorkshopPage() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-x-12 gap-y-6 xl:grid-cols-3">
-          <Link href={`/workshop/create/${GameType.slots}`}>
+          <Link href={`/workshop/create/${GameTypeEnum.slots}`}>
             <CreatePackCard
               title={workshopDictionary.createSlotsPack}
               image={<Image src={slotsImage} alt="Slots game image" />}

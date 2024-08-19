@@ -1,4 +1,4 @@
-import { GamePack } from '@/domain/packs/GamePack';
+import { GamePack } from '@/core/domain/packs/GamePack';
 import React from 'react';
 
 type Props = {

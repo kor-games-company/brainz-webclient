@@ -3,12 +3,13 @@
 import { Field, Fieldset, Label, Legend } from '@headlessui/react';
 import React, { useActionState } from 'react';
 import createPackAction from '../../../_actions/createPackAction';
-import { GameType } from '@prisma/client';
 import StyledInput from '@/app/_ui/styled/StyledInput';
 import StyledTextarea from '@/app/_ui/styled/StyledTextarea';
 import useLocalization from '@/app/_hooks/useLocalization';
 import StyledButton from '@/app/_ui/styled/StyledButton';
 import { useRouter } from 'next/navigation';
+import { GameType } from '@/core/domain/games/valueObjects/GameType';
+import StyledSelect from '@/app/_ui/styled/StyledSelect';
 
 type Props = {
   gameType: GameType;
@@ -41,6 +42,10 @@ export default function CreatePackForm({ gameType }: Props) {
             <Field className="flex flex-col">
               <Label>{workshopDictionary.createPackFieldLabel}</Label>
               <StyledInput name="name" />
+            </Field>
+            <Field className="flex flex-col">
+              <Label>Select language</Label>
+              <StyledSelect name="language" />
             </Field>
             <Field className="flex flex-col">
               <Label>{workshopDictionary.createPackFieldDescription}</Label>

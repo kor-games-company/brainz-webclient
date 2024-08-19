@@ -1,8 +1,8 @@
 'use server';
 
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
-import { buildCreatePackSchema } from '../../../../../../infrastructure/data/packs/buildCreatePackSchema';
-import { GameType } from '@/domain/games/GameType';
+import getCurrentDictionary from '@/shared/localization/getCurrentDictionary';
+import { buildCreatePackSchema } from '../../../../../../core/application/schemas/buildCreatePackSchema';
+import { GameTypeEnum } from '@/core/domain/valueObjects/GameType';
 
 export type CreatePackActionState = {
   errors?: {
@@ -14,7 +14,7 @@ export type CreatePackActionState = {
 };
 
 export default async function createPackAction(
-  gameType: GameType,
+  gameType: GameTypeEnum,
   prevState: CreatePackActionState | undefined,
   formData: FormData,
 ): Promise<CreatePackActionState | undefined> {

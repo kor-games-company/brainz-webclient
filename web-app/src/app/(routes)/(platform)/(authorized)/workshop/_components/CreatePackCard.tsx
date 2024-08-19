@@ -1,5 +1,5 @@
 import StyledTooltip from '@/app/_ui/styled/StyledTooltip';
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import clsx from 'clsx';
 import React from 'react';
 

@@ -4,10 +4,10 @@ import { PropsWithChildren, createContext } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { Language } from '@/domain/common/Language';
-import { FALLBACK_LANGUAGE } from '@/localization/constants';
-import { Dictionary } from '@/localization/dictionaries/Dictionary';
-import { enDictionary } from '@/localization/dictionaries/en/enDictionary';
+import { Language } from '@/core/domain/localization/Language';
+import { FALLBACK_LANGUAGE } from '@/shared/localization/constants';
+import { Dictionary } from '@/shared/localization/dictionaries/Dictionary';
+import { enDictionary } from '@/shared/localization/dictionaries/en/enDictionary';
 
 type LocalizationContextType = {
   lang: Language;

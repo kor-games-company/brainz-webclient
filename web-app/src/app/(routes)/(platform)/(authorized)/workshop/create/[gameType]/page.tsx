@@ -1,12 +1,12 @@
 import PageHeader from '@/app/(routes)/(platform)/_components/PageHeader';
 import ContentPanel from '@/app/_ui/layout/ContentPanel';
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import BackToWorkshopLink from './_components/BackToWorkshopLink';
-import { WorkshopDictionary } from '@/localization/dictionaries/pages/WorkshopDictionary';
+import { WorkshopDictionary } from '@/shared/localization/dictionaries/pages/WorkshopDictionary';
 import CreatePackForm from './_components/CreatePackForm';
-import { GameType } from '@/domain/games/GameType';
+import { GameType } from '@/core/domain/games/valueObjects/GameType';
 
 type Props = {
   params: {

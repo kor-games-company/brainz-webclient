@@ -8,9 +8,9 @@ import {
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
 import UserBadge from './UserBadge';
-import { auth } from '@/infrastructure/auth/auth';
+import { auth } from '@/core/infrastructure/auth/auth';
 import StyledButton from '@/app/_ui/styled/StyledButton';
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 
 export default async function Header() {
   const dictionary = getCurrentDictionary();

@@ -1,4 +1,4 @@
-import { auth } from '@/infrastructure/auth/auth';
+import { auth } from '@/core/infrastructure/auth/auth';
 import { RedirectType, redirect } from 'next/navigation';
 import { PropsWithChildren } from 'react';
 

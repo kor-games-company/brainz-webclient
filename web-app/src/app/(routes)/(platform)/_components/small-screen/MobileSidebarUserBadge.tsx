@@ -1,8 +1,8 @@
-import { auth, signOut } from '@/infrastructure/auth/auth';
+import { auth, signOut } from '@/core/infrastructure/auth/auth';
 import React from 'react';
 import ProfileIcon from '../ProfileIcon';
 import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline';
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import StyledButton from '@/app/_ui/styled/StyledButton';
 
 export default async function MobileSidebarUserBadge() {

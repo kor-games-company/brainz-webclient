@@ -1,5 +1,5 @@
-import { auth, signOut } from '@/infrastructure/auth/auth';
-import { getThemeFromCookies } from '@/utils/cookies/cookies.utils';
+import { auth, signOut } from '@/core/infrastructure/auth/auth';
+import { getThemeFromCookies } from '@/shared/utils/cookies.utils';
 import {
   Menu,
   MenuButton,
@@ -11,7 +11,7 @@ import {
 import ProfileIcon from '../ProfileIcon';
 import { ArrowLeftStartOnRectangleIcon, Cog6ToothIcon, CogIcon } from '@heroicons/react/24/outline';
 import UserBadgeNavLink from './UserBadgeNavLink';
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import React from 'react';
 
 export default async function UserBadge() {

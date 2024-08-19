@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Theme } from '../../theme/types';
-import { Language } from '../../localization/types';
+import { Theme } from '../../shared/theme/types';
+import { Language } from '../../shared/localization/types';
 import useLocalization from '../_hooks/useLocalization';
 import useTheme from '../_hooks/useTheme';
 import StyledSelect, { IOption } from '../_ui/styled/StyledSelect';

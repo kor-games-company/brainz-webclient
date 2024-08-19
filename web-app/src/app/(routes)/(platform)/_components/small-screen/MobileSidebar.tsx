@@ -6,11 +6,11 @@ import {
   PuzzlePieceIcon,
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
-import { auth } from '@/infrastructure/auth/auth';
+import { auth } from '@/core/infrastructure/auth/auth';
 import Logo from '../Logo';
 import NavLink from '../NavLink';
 import MobileSidebarUserBadge from './MobileSidebarUserBadge';
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import React from 'react';
 
 export default async function MobileSidebar() {

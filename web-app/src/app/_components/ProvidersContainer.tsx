@@ -1,9 +1,9 @@
 'use client';
 
 import React, { PropsWithChildren } from 'react';
-import { Theme } from '../../theme/types';
-import { Dictionary } from '../../localization/dictionaries/Dictionary';
-import { Language } from '@/domain/common/Language';
+import { Theme } from '../../shared/theme/types';
+import { Dictionary } from '../../shared/localization/dictionaries/Dictionary';
+import { Language } from '@/core/domain/localization/Language';
 import LocalizationProvider from './LocalizationProvider';
 import ThemeProvider from './ThemeProvider';
 

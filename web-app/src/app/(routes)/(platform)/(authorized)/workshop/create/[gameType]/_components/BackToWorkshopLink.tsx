@@ -1,4 +1,4 @@
-import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
+import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import React from 'react';
