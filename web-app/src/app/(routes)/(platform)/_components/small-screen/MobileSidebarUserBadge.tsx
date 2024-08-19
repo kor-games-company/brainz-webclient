@@ -1,4 +1,4 @@
-import { auth, signOut } from '@/auth/auth';
+import { auth, signOut } from '@/infrastructure/auth/auth';
 import React from 'react';
 import ProfileIcon from '../ProfileIcon';
 import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline';

@@ -1,14 +1,18 @@
+import { Language } from '@/domain/common/Language';
 import { Dictionary } from '@/localization/dictionaries/Dictionary';
 import interpolate from '@/utils/strings/interpolate';
 import { z } from 'zod';
 
-export function createPackSchema(dictionary: Dictionary) {
+export function buildCreatePackSchema(dictionary: Dictionary) {
   const schemaDictionary = dictionary.schema;
 
   const minLengthError = (val: number) =>
     interpolate(schemaDictionary.minLength, { arg1: String(val) });
   const maxLengthError = (val: number) =>
     interpolate(schemaDictionary.maxLength, { arg1: String(val) });
+  const languageEnumError = interpolate(schemaDictionary.maxLength, {
+    arg1: dictionary.localization.language,
+  });
 
   return z
     .object({
@@ -20,6 +24,7 @@ export function createPackSchema(dictionary: Dictionary) {
         .string({ message: schemaDictionary.string })
         .min(16, minLengthError(16))
         .max(512, maxLengthError(512)),
+      language: z.nativeEnum(Language, { message: languageEnumError }),
       image: z.instanceof(File).optional(),
       imageUrl: z.string().url().optional(),
     })

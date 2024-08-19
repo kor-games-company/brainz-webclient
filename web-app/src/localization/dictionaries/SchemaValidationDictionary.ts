@@ -3,4 +3,5 @@ export type SchemaValidationDictionary = {
   minLength: string;
   maxLength: string;
   image: string;
+  enum: string;
 };

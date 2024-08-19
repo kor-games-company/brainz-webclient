@@ -32,6 +32,7 @@ export const enDictionary: Dictionary = {
     minLength: 'Field length should be more or equal to {arg1}',
     maxLength: 'Field length should be less or equal to {arg1}',
     image: 'Image should be specified',
+    enum: 'Value for {arg1} should be selected',
   },
   pages: {
     home: { name: 'Home' },

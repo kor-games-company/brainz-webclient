@@ -1,4 +1,4 @@
-import { Language } from './types';
+import { Language } from '@/domain/common/Language';
 
-export const SUPPORTED_LANGUAGES: Language[] = ['en', 'ru'];
-export const FALLBACK_LANGUAGE: Language = 'en';
+export const TRANSLATION_LANGUAGES: Language[] = [Language.en, Language.ru];
+export const FALLBACK_LANGUAGE: Language = Language.en;

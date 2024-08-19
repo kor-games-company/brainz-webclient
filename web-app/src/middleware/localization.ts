@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Language } from '../localization/types';
-import { FALLBACK_LANGUAGE, SUPPORTED_LANGUAGES } from '../localization/constants';
+import { FALLBACK_LANGUAGE, TRANSLATION_LANGUAGES } from '../localization/constants';
 import { AppNextRequest } from '@/middleware';
 
 export default async function localizationMiddleware(req: AppNextRequest, res: NextResponse) {
@@ -21,7 +21,7 @@ export default async function localizationMiddleware(req: AppNextRequest, res: N
 
   const acceptedLangs = acceptLanguage?.split(',');
   for (const acceptedLang of acceptedLangs) {
-    for (const supportedLang of SUPPORTED_LANGUAGES) {
+    for (const supportedLang of TRANSLATION_LANGUAGES) {
       if (acceptedLang.startsWith(supportedLang)) {
         req.lang = supportedLang;
         res.cookies.set('lang', supportedLang);

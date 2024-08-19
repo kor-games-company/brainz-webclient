@@ -59,25 +59,37 @@ model User {
   sessions      Session[]
 
   // custom references
-  packs GamePack[]
-  rooms GameRoom[]
+  packs DbGamePack[]
+  rooms DbGameRoom[]
  
   @@map("users")
 }
 
-// DOMAIN MODELS
+// COMMON MODELS
 
-enum GameType {
-  SLOTS
-  QUIZ
-  TERRITORY
+enum DbLanguage {
+  en
+  ru
+
+  @@map("language")
 }
 
-model GamePack {
+// DOMAIN DB MODELS
+
+enum DbGameType {
+  slots
+  quiz
+  territory
+
+	@@map("game_type")
+}
+
+model DbGamePack {
   id String @id @default(cuid())
   name String
   description String
-  gameType GameType
+  gameType DbGameType
+  language DbLanguage
   imageUrl String
   isPublic Boolean @default(false) @map("is_public")
 
@@ -87,16 +99,16 @@ model GamePack {
   userId String @map("user_id")
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  rooms GameRoom[]
+  rooms DbGameRoom[]
 
-  slotsPack SlotsPack?
+  slotsPack DbSlotsPack?
 
   @@index([userId])
   @@index([gameType])
   @@map("game_packs")
 }
 
-model GameRoom {
+model DbGameRoom {
   id String @id @default(cuid())
   server String
   code String @unique
@@ -112,7 +124,7 @@ model GameRoom {
   owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 
   packId String @map("pack_id")
-  pack GamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  pack DbGamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
 
   @@index([code])
   @@index([isPublic])
@@ -121,16 +133,16 @@ model GameRoom {
 
 // SLOTS GAME
 
-model SlotsPack {
+model DbSlotsPack {
   packId String @id @map("pack_id")
-  pack GamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
+  pack DbGamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
 
-  stages SlotsStage[]
+  stages DbSlotsStage[]
 
   @@map("slots_packs")
 }
 
-model SlotsStage {
+model DbSlotsStage {
   id String @id @default(cuid())
   number Int
   name String
@@ -138,44 +150,46 @@ model SlotsStage {
   imageUrl String?
 
   packId String @map("pack_id")
-  pack SlotsPack @relation(fields: [packId], references: [packId], onDelete: Cascade)
+  pack DbSlotsPack @relation(fields: [packId], references: [packId], onDelete: Cascade)
 
-  topics SlotsTopic[]
+  topics DbSlotsTopic[]
 
   @@index([packId])
   @@map("slots_stages")
 }
 
-model SlotsTopic {
+model DbSlotsTopic {
   id String @id @default(cuid())
   number Int
   name String
 
   stageId String @map("stage_id")
-  stage SlotsStage @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  stage DbSlotsStage @relation(fields: [stageId], references: [id], onDelete: Cascade)
 
-  questions SlotsQuestion[]
+  questions DbSlotsQuestion[]
 
   @@index([stageId])
   @@map("slots_topics")
 }
 
-enum SlotsQuestionType {
-  TEXT
-  IMAGE
-  AUDIO
-  VIDEO
+enum DbSlotsQuestionType {
+  text
+  image
+  audio
+  video
+
+	@@map("slots_question_type")
 }
 
-model SlotsQuestion {
+model DbSlotsQuestion {
   id String @id @default(cuid())
-  type SlotsQuestionType
+  type DbSlotsQuestionType
   points Int
   title String
   content String
 
   topicId String @map("topic_id")
-  topic SlotsTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  topic DbSlotsTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
 
   @@index([topicId])
   @@map("slots_questions")

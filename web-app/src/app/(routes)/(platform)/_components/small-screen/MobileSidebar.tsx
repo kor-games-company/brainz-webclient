@@ -6,7 +6,7 @@ import {
   PuzzlePieceIcon,
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
-import { auth } from '@/auth/auth';
+import { auth } from '@/infrastructure/auth/auth';
 import Logo from '../Logo';
 import NavLink from '../NavLink';
 import MobileSidebarUserBadge from './MobileSidebarUserBadge';

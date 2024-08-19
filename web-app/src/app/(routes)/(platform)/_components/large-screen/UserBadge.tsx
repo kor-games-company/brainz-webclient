@@ -1,4 +1,4 @@
-import { auth, signOut } from '@/auth/auth';
+import { auth, signOut } from '@/infrastructure/auth/auth';
 import { getThemeFromCookies } from '@/utils/cookies/cookies.utils';
 import {
   Menu,

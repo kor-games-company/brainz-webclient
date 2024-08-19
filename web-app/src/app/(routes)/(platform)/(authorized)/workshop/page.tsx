@@ -7,26 +7,18 @@ import Image from 'next/image';
 import slotsImage from '@/../public/slots.webp';
 import territoryImage from '@/../public/territory.webp';
 import quizImage from '@/../public/quiz.png';
-import { prisma } from '@/prisma';
-import { auth } from '@/auth/auth';
+import { auth } from '@/infrastructure/auth/auth';
 import UserPackCard from './_components/UserPackCard';
 import Link from 'next/link';
-import { GameType } from '@prisma/client';
-
-async function getUserPacks(userId: string) {
-  return await prisma.gamePack.findMany({
-    where: {
-      userId,
-    },
-  });
-}
+import { packsRepo } from '@/infrastructure/data/packs/getPacksRepo';
+import { GameType } from '@/domain/games/GameType';
 
 export default async function WorkshopPage() {
   const workshopDictionary = getCurrentDictionary().pages.workshop;
 
   const session = await auth();
 
-  const packs = await getUserPacks(session!.user!.id!);
+  const packs = await packsRepo.getUserPacks(session!.user!.id!);
 
   return (
     <article className="flex flex-col items-stretch gap-4">
@@ -49,7 +41,7 @@ export default async function WorkshopPage() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-x-12 gap-y-6 xl:grid-cols-3">
-          <Link href={`/workshop/create/${GameType.SLOTS.toLowerCase()}`}>
+          <Link href={`/workshop/create/${GameType.slots}`}>
             <CreatePackCard
               title={workshopDictionary.createSlotsPack}
               image={<Image src={slotsImage} alt="Slots game image" />}

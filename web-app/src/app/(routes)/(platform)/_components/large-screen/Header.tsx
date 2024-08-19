@@ -8,7 +8,7 @@ import {
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
 import UserBadge from './UserBadge';
-import { auth } from '@/auth/auth';
+import { auth } from '@/infrastructure/auth/auth';
 import StyledButton from '@/app/_ui/styled/StyledButton';
 import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
 

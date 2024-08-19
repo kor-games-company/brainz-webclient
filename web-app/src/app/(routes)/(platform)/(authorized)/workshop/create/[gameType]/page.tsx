@@ -1,13 +1,12 @@
 import PageHeader from '@/app/(routes)/(platform)/_components/PageHeader';
 import ContentPanel from '@/app/_ui/layout/ContentPanel';
-import { isGameType } from '@/utils/enums/isInEnum';
 import getCurrentDictionary from '@/utils/localization/getCurrentDictionary';
-import { GameType } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import BackToWorkshopLink from './_components/BackToWorkshopLink';
 import { WorkshopDictionary } from '@/localization/dictionaries/pages/WorkshopDictionary';
 import CreatePackForm from './_components/CreatePackForm';
+import { GameType } from '@/domain/games/GameType';
 
 type Props = {
   params: {
@@ -16,8 +15,8 @@ type Props = {
 };
 
 export default function CreateGamePackPage({ params: { gameType: gameTypeStr } }: Props) {
-  const gameType = gameTypeStr.toUpperCase() as GameType;
-  if (!isGameType(gameType)) redirect('/workshop');
+  if (!(gameTypeStr in GameType)) redirect('/workshop');
+  const gameType = gameTypeStr as GameType;
 
   const workshopDictionary = getCurrentDictionary().pages.workshop;
   const { title, description } = getTranslationsFromGameType(gameType, workshopDictionary);
@@ -37,11 +36,13 @@ export default function CreateGamePackPage({ params: { gameType: gameTypeStr } }
 
 function getTranslationsFromGameType(gameType: GameType, dict: WorkshopDictionary) {
   switch (gameType) {
-    case 'SLOTS':
+    case 'slots':
       return { title: dict.slots.createTitle, description: dict.slots.createDescription };
-    case 'TERRITORY':
+    case 'territory':
       throw new Error('Not implemented');
-    case 'QUIZ':
+    case 'quiz':
       throw new Error('Not implemented');
+    default:
+      throw new Error('Unreachable code');
   }
 }

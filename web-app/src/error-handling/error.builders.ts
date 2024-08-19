@@ -1,4 +1,4 @@
-import { Language } from '@/localization/types';
+import { Language } from '@/app/_components/localization/types';
 import { AppError, AppErrorType } from './AppError';
 import { FALLBACK_LANGUAGE } from '@/localization/constants';
 import { dictionaryByLang } from '@/localization/dictionaries/dictionaryByLang';

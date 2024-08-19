@@ -1,4 +1,4 @@
-import { GamePack } from '@prisma/client';
+import { GamePack } from '@/domain/packs/GamePack';
 import React from 'react';
 
 type Props = {

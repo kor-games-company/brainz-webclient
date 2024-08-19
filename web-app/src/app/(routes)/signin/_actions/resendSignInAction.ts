@@ -1,6 +1,6 @@
 'use server';
 
-import { signIn } from '@/auth/auth';
+import { signIn } from '@/infrastructure/auth/auth';
 
 type ResendSignInActionState = {
   errors?: {
