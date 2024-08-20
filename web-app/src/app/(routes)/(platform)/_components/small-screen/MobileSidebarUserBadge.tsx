@@ -1,17 +1,15 @@
-import { auth, signOut } from '@/core/infrastructure/auth/auth';
+import { getUserOrGuest, signOut } from '@/core/infrastructure/auth/auth';
 import React from 'react';
 import ProfileIcon from '../ProfileIcon';
 import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline';
-import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import StyledButton from '@/app/_ui/styled/StyledButton';
+import { getUserOrGuestDictionary } from '@/core/infrastructure/auth/auth.utils';
 
 export default async function MobileSidebarUserBadge() {
-  const session = await auth();
-  if (!session?.user) return null;
+  const authResult = await getUserOrGuest();
+  if (!authResult.isAuthorized) return null;
 
-  const dictionary = getCurrentDictionary();
-
-  const userName = session.user.name ?? session.user.email ?? 'Unknown';
+  const dictionary = await getUserOrGuestDictionary();
 
   const handleSignOut = async () => {
     'use server';
@@ -22,9 +20,12 @@ export default async function MobileSidebarUserBadge() {
     <div className="flex cursor-default select-none items-center justify-between px-6 py-4">
       <div className="flex items-center gap-4 overflow-hidden">
         <div className="h-10 w-10 flex-shrink-0">
-          <ProfileIcon name={userName} imageSrc={session.user.image} />
+          <ProfileIcon
+            name={authResult.user.getDisplayName()}
+            imageSrc={authResult.user.getImageUrl()}
+          />
         </div>
-        <p className="max-w-full truncate">{userName}</p>
+        <p className="max-w-full truncate">{authResult.user.getDisplayName()}</p>
       </div>
       <form action={handleSignOut} className="flex-shrink-0">
         <StyledButton type="submit" className="flex h-full w-full items-center gap-2">

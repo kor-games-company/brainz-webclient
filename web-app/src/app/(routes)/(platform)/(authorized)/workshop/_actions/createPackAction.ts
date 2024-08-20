@@ -1,8 +1,8 @@
 'use server';
 
-import getCurrentDictionary from '@/shared/localization/getCurrentDictionary';
+import { getUserOrGuestDictionary } from '@/core/infrastructure/auth/auth.utils';
 import { buildCreatePackSchema } from '../../../../../../core/application/schemas/buildCreatePackSchema';
-import { GameTypeEnum } from '@/core/domain/valueObjects/GameType';
+import { GameTypeEnum } from '@/core/domain/value-objects/GameType';
 
 export type CreatePackActionState = {
   errors?: {
@@ -18,7 +18,8 @@ export default async function createPackAction(
   prevState: CreatePackActionState | undefined,
   formData: FormData,
 ): Promise<CreatePackActionState | undefined> {
-  const schema = buildCreatePackSchema(getCurrentDictionary());
+  const dictionary = await getUserOrGuestDictionary();
+  const schema = buildCreatePackSchema(dictionary);
 
   const image = formData.get('image') as File | null;
   const imageUrl = formData.get('imageUrl') as string | null;

@@ -1,5 +1,5 @@
-import { Language } from '@/core/domain/localization/Language';
+import { LanguageEnum } from '@/core/domain/value-objects/Language';
 
-export type LocalizationDictionary = Record<Language, string> & {
+export type LocalizationDictionary = Record<LanguageEnum, string> & {
   language: string;
 };

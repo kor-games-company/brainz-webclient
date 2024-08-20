@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
-import { Language } from '../shared/localization/types';
-import { FALLBACK_LANGUAGE, TRANSLATION_LANGUAGES } from '../shared/localization/constants';
 import { AppNextRequest } from '@/middleware';
+import { LanguageEnum } from '@/core/domain/value-objects/Language';
+import { FALLBACK_LANGUAGE, TRANSLATION_LANGUAGES } from '../localization/constants';
 
 export default async function localizationMiddleware(req: AppNextRequest, res: NextResponse) {
   // TODO: After implementing authorization first priority will be to check user defined language
   const lang = req.cookies.get('lang');
 
   if (lang) {
-    req.lang = lang.value as Language;
+    req.lang = lang.value as LanguageEnum;
     return;
   }
 

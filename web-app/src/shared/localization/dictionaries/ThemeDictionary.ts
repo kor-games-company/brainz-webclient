@@ -1,5 +1,5 @@
-import { Theme } from '@/shared/theme/types';
+import { ThemeEnum } from '@/core/domain/value-objects/Theme';
 
-export type ThemeDictionary = Record<Theme, string> & {
+export type ThemeDictionary = Record<ThemeEnum, string> & {
   theme: string;
 };

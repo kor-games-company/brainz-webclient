@@ -1,12 +1,12 @@
 import PageHeader from '@/app/(routes)/(platform)/_components/PageHeader';
 import ContentPanel from '@/app/_ui/layout/ContentPanel';
-import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import BackToWorkshopLink from './_components/BackToWorkshopLink';
 import { WorkshopDictionary } from '@/shared/localization/dictionaries/pages/WorkshopDictionary';
 import CreatePackForm from './_components/CreatePackForm';
-import { GameType } from '@/core/domain/games/valueObjects/GameType';
+import { GameTypeEnum } from '@/core/domain/value-objects/GameType';
+import { getUserOrGuestDictionary } from '@/core/infrastructure/auth/auth.utils';
 
 type Props = {
   params: {
@@ -14,11 +14,11 @@ type Props = {
   };
 };
 
-export default function CreateGamePackPage({ params: { gameType: gameTypeStr } }: Props) {
-  if (!(gameTypeStr in GameType)) redirect('/workshop');
-  const gameType = gameTypeStr as GameType;
+export default async function CreateGamePackPage({ params: { gameType: gameTypeStr } }: Props) {
+  if (!(gameTypeStr in GameTypeEnum)) redirect('/workshop');
+  const gameType = gameTypeStr as GameTypeEnum;
 
-  const workshopDictionary = getCurrentDictionary().pages.workshop;
+  const workshopDictionary = (await getUserOrGuestDictionary()).pages.workshop;
   const { title, description } = getTranslationsFromGameType(gameType, workshopDictionary);
 
   return (
@@ -34,7 +34,7 @@ export default function CreateGamePackPage({ params: { gameType: gameTypeStr } }
   );
 }
 
-function getTranslationsFromGameType(gameType: GameType, dict: WorkshopDictionary) {
+function getTranslationsFromGameType(gameType: GameTypeEnum, dict: WorkshopDictionary) {
   switch (gameType) {
     case 'slots':
       return { title: dict.slots.createTitle, description: dict.slots.createDescription };

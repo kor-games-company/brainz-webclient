@@ -4,14 +4,14 @@ import { PropsWithChildren, createContext } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { Language } from '@/core/domain/localization/Language';
 import { FALLBACK_LANGUAGE } from '@/shared/localization/constants';
 import { Dictionary } from '@/shared/localization/dictionaries/Dictionary';
 import { enDictionary } from '@/shared/localization/dictionaries/en/enDictionary';
+import { LanguageEnum } from '@/core/domain/value-objects/Language';
 
 type LocalizationContextType = {
-  lang: Language;
-  changeLang: (lang: Language) => void;
+  lang: LanguageEnum;
+  changeLang: (lang: LanguageEnum) => void;
   dictionary: Dictionary;
 };
 
@@ -25,11 +25,11 @@ export default function LocalizationProvider({
   children,
   lang,
   dictionary,
-}: PropsWithChildren<{ lang: Language; dictionary: Dictionary }>) {
+}: PropsWithChildren<{ lang: LanguageEnum; dictionary: Dictionary }>) {
   const [_, setCookies] = useCookies();
   const router = useRouter();
 
-  function changeLang(lang: Language) {
+  function changeLang(lang: LanguageEnum) {
     setCookies('lang', lang);
     router.refresh();
   }

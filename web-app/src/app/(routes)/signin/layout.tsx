@@ -1,11 +1,11 @@
-import { auth } from '@/core/infrastructure/auth/auth';
+import { getUserOrGuest } from '@/core/infrastructure/auth/auth';
 import { RedirectType, redirect } from 'next/navigation';
 import React, { PropsWithChildren } from 'react';
 
 export default async function AuthLayout({ children }: PropsWithChildren) {
-  const session = await auth();
+  const authResult = await getUserOrGuest();
 
-  return session?.user ? (
+  return authResult.isAuthorized ? (
     redirect('/', RedirectType.replace)
   ) : (
     <article className="flex h-full w-full items-center justify-center bg-gradient-to-br from-accent/5 to-accent/90">

@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Language } from './shared/localization/types';
-import localizationMiddleware from './middleware/localization';
-import themeMiddleware from './middleware/theme';
-import { Theme } from './shared/theme/types';
+import { Language, LanguageEnum } from './core/domain/value-objects/Language';
+import { Theme, ThemeEnum } from './core/domain/value-objects/Theme';
+import localizationMiddleware from './shared/middleware/localization';
+import themeMiddleware from './shared/middleware/theme';
 
 export type AppNextRequest = NextRequest & {
-  lang?: Language;
-  theme?: Theme;
+  lang?: LanguageEnum;
+  theme?: ThemeEnum;
 };
 
 export default async function middleware(req: AppNextRequest) {

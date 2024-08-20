@@ -1,4 +1,4 @@
-import { Language } from '@/core/domain/localization/Language';
+import { LanguageEnum } from '@/core/domain/value-objects/Language';
 import { Dictionary } from '@/shared/localization/dictionaries/Dictionary';
 import interpolate from '@/shared/utils/strings/interpolate';
 import { z } from 'zod';
@@ -24,7 +24,7 @@ export function buildCreatePackSchema(dictionary: Dictionary) {
         .string({ message: schemaDictionary.string })
         .min(16, minLengthError(16))
         .max(512, maxLengthError(512)),
-      language: z.nativeEnum(Language, { message: languageEnumError }),
+      language: z.nativeEnum(LanguageEnum, { message: languageEnumError }),
       image: z.instanceof(File).optional(),
       imageUrl: z.string().url().optional(),
     })

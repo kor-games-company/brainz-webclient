@@ -1,5 +1,5 @@
 import StyledTooltip from '@/app/_ui/styled/StyledTooltip';
-import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
+import { getUserOrGuestDictionary } from '@/core/infrastructure/auth/auth.utils';
 import clsx from 'clsx';
 import React from 'react';
 
@@ -9,8 +9,8 @@ type Props = {
   comingSoon?: boolean;
 };
 
-export default function CreatePackCard({ title, image, comingSoon = false }: Props) {
-  const workshopDictionary = getCurrentDictionary().pages.workshop;
+export default async function CreatePackCard({ title, image, comingSoon = false }: Props) {
+  const workshopDictionary = (await getUserOrGuestDictionary()).pages.workshop;
 
   return (
     <div

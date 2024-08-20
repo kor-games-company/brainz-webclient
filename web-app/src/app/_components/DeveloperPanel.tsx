@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { Theme } from '../../shared/theme/types';
-import { Language } from '../../shared/localization/types';
 import useLocalization from '../_hooks/useLocalization';
 import useTheme from '../_hooks/useTheme';
 import StyledSelect, { IOption } from '../_ui/styled/StyledSelect';
 import { Field, Fieldset, Label, Legend } from '@headlessui/react';
+import { ThemeEnum } from '@/core/domain/value-objects/Theme';
+import { LanguageEnum } from '@/core/domain/value-objects/Language';
 
 export default function DeveloperPanel() {
   const { dictionary } = useLocalization();
@@ -25,14 +25,14 @@ function ThemeSwitcher() {
   const { theme, changeTheme } = useTheme();
   const { dictionary } = useLocalization();
 
-  const themeOptions: IOption<Theme>[] = [
+  const themeOptions: IOption<ThemeEnum>[] = [
     {
       label: dictionary.theme.light,
-      value: 'light',
+      value: ThemeEnum.light,
     },
     {
       label: dictionary.theme.dark,
-      value: 'dark',
+      value: ThemeEnum.dark,
     },
   ];
 
@@ -44,14 +44,14 @@ function ThemeSwitcher() {
   );
 }
 
-const langOptions: IOption<Language>[] = [
+const langOptions: IOption<LanguageEnum>[] = [
   {
     label: 'English',
-    value: 'en',
+    value: LanguageEnum.en,
   },
   {
     label: 'Русский',
-    value: 'ru',
+    value: LanguageEnum.ru,
   },
 ];
 

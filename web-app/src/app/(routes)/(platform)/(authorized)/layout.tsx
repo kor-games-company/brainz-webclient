@@ -1,9 +1,9 @@
-import { auth } from '@/core/infrastructure/auth/auth';
+import { getUserOrGuest } from '@/core/infrastructure/auth/auth';
 import { RedirectType, redirect } from 'next/navigation';
 import { PropsWithChildren } from 'react';
 
 export default async function AuthorizedLayout({ children }: PropsWithChildren) {
-  const session = await auth();
+  const authResult = await getUserOrGuest();
 
-  return session?.user ? children : redirect('/signin', RedirectType.replace);
+  return authResult.isAuthorized ? children : redirect('/signin', RedirectType.replace);
 }

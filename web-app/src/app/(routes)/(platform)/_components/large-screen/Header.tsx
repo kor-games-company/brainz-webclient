@@ -8,13 +8,13 @@ import {
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
 import UserBadge from './UserBadge';
-import { auth } from '@/core/infrastructure/auth/auth';
+import { getUserOrGuest } from '@/core/infrastructure/auth/auth';
 import StyledButton from '@/app/_ui/styled/StyledButton';
-import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
+import { getUserOrGuestDictionary } from '@/core/infrastructure/auth/auth.utils';
 
 export default async function Header() {
-  const dictionary = getCurrentDictionary();
-  const session = await auth();
+  const dictionary = await getUserOrGuestDictionary();
+  const authResult = await getUserOrGuest();
 
   const links = [
     {
@@ -29,7 +29,7 @@ export default async function Header() {
     },
   ];
 
-  if (session?.user) {
+  if (authResult.isAuthorized) {
     links.push({
       href: '/hub',
       label: dictionary.pages.hub.name,
@@ -59,7 +59,7 @@ export default async function Header() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        {session?.user ? (
+        {authResult.isAuthorized ? (
           <UserBadge />
         ) : (
           <Link href="/signin">

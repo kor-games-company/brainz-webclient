@@ -1,16 +1,19 @@
 import { Inter } from 'next/font/google';
-import { getThemeFromCookies, getLangFromCookies } from '@/shared/utils/cookies.utils';
 import { dictionaryByLang } from '@/shared/localization/dictionaries/dictionaryByLang';
 import AppContainer from './_components/AppContainer';
 import ProvidersContainer from './_components/ProvidersContainer';
 import '@/globals.css';
-import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import React from 'react';
+import {
+  getUserOrGuestDictionary,
+  getUserOrGuestLanguage,
+  getUserOrGuestTheme,
+} from '@/core/infrastructure/auth/auth.utils';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export async function generateMetadata() {
-  const dictionary = getCurrentDictionary();
+  const dictionary = await getUserOrGuestDictionary();
 
   return {
     title: {
@@ -21,14 +24,14 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const theme = getThemeFromCookies();
-  const lang = getLangFromCookies();
-  const dictionary = dictionaryByLang[lang];
+  const theme = await getUserOrGuestTheme();
+  const lang = await getUserOrGuestLanguage();
+  const dictionary = await getUserOrGuestDictionary();
 
   return (
     <html lang={lang} className="h-full w-full">

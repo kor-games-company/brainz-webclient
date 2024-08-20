@@ -1,10 +1,11 @@
-import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
+import useLocalization from '@/app/_hooks/useLocalization';
+import { getUserOrGuestDictionary } from '@/core/infrastructure/auth/auth.utils';
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import React from 'react';
 
-export default function BackToWorkshopLink() {
-  const workshopDictionary = getCurrentDictionary().pages.workshop;
+export default async function BackToWorkshopLink() {
+  const workshopDictionary = (await getUserOrGuestDictionary()).pages.workshop;
   return (
     <Link
       href={'/workshop'}

@@ -6,16 +6,16 @@ import {
   PuzzlePieceIcon,
   ChatBubbleBottomCenterIcon,
 } from '@heroicons/react/24/outline';
-import { auth } from '@/core/infrastructure/auth/auth';
+import { getUserOrGuest } from '@/core/infrastructure/auth/auth';
 import Logo from '../Logo';
 import NavLink from '../NavLink';
 import MobileSidebarUserBadge from './MobileSidebarUserBadge';
-import getCurrentDictionary from '@/shared/utils/localization/getCurrentDictionary';
 import React from 'react';
+import { getUserOrGuestDictionary } from '@/core/infrastructure/auth/auth.utils';
 
 export default async function MobileSidebar() {
-  const dictionary = getCurrentDictionary();
-  const session = await auth();
+  const dictionary = await getUserOrGuestDictionary();
+  const authResult = await getUserOrGuest();
 
   const links = [
     { href: '/', label: dictionary.pages.home.name, icon: <HomeIcon className="h-6 w-6" /> },
@@ -31,7 +31,7 @@ export default async function MobileSidebar() {
     },
   ];
 
-  if (session?.user) {
+  if (authResult.isAuthorized) {
     links.push(
       {
         href: '/hub',

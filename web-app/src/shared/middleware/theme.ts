@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
-import { Theme } from '../shared/theme/types';
-import { FALLBACK_THEME } from '../shared/theme/constants';
 import { AppNextRequest } from '@/middleware';
+import { ThemeEnum } from '@/core/domain/value-objects/Theme';
+import { FALLBACK_THEME } from '../theme/constants';
 
 export default async function themeMiddleware(req: AppNextRequest, res: NextResponse) {
   // TODO: After implementing authorization first priority will be to check user defined theme
   const theme = req.cookies.get('theme');
 
   if (theme) {
-    req.theme = theme.value as Theme;
+    req.theme = theme.value as ThemeEnum;
     return;
   }
 

@@ -6,16 +6,12 @@ import Image from 'next/image';
 import slotsImage from '@/../public/slots.webp';
 import territoryImage from '@/../public/territory.webp';
 import quizImage from '@/../public/quiz.png';
-import { auth } from '@/core/infrastructure/auth/auth';
-import UserPackCard from './_components/UserPackCard';
 import Link from 'next/link';
-import { GameTypeEnum } from '@/core/domain/valueObjects/GameType';
-import getCurrentDictionary from '@/shared/localization/getCurrentDictionary';
+import { GameTypeEnum } from '@/core/domain/value-objects/GameType';
+import { getUserOrGuestDictionary } from '@/core/infrastructure/auth/auth.utils';
 
 export default async function WorkshopPage() {
-  const workshopDictionary = getCurrentDictionary().pages.workshop;
-
-  const session = await auth();
+  const workshopDictionary = (await getUserOrGuestDictionary()).pages.workshop;
 
   return (
     <article className="flex flex-col items-stretch gap-4">

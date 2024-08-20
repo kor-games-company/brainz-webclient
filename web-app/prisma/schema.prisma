@@ -8,7 +8,7 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-// PRISMA MODELS
+// AUTHJS MODELS
 
 model Account {
   id                 String  @id @default(cuid())
@@ -59,6 +59,8 @@ model User {
   sessions      Session[]
 
   // custom references
+  settings UserSettings?
+
   packs DbGamePack[]
   rooms DbGameRoom[]
  
@@ -72,6 +74,25 @@ enum DbLanguage {
   ru
 
   @@map("language")
+}
+
+enum DbTheme {
+  dark
+  light
+
+  @@map("theme")
+}
+
+// SETTINGS MODELS
+
+model UserSettings {
+  userId String @id @map("user_id")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  preferredLanguage DbLanguage @map("preferred_language")
+  preferredTheme DbTheme @map("preferred_theme")
+
+  @@map("user_settings")
 }
 
 // DOMAIN DB MODELS

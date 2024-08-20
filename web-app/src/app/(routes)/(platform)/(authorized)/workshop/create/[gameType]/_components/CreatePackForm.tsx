@@ -8,17 +8,19 @@ import StyledTextarea from '@/app/_ui/styled/StyledTextarea';
 import useLocalization from '@/app/_hooks/useLocalization';
 import StyledButton from '@/app/_ui/styled/StyledButton';
 import { useRouter } from 'next/navigation';
-import { GameType } from '@/core/domain/games/valueObjects/GameType';
-import StyledSelect from '@/app/_ui/styled/StyledSelect';
+import StyledSelect, { IOption } from '@/app/_ui/styled/StyledSelect';
+import { LanguageEnum } from '@/core/domain/value-objects/Language';
+import { GameTypeEnum } from '@/core/domain/value-objects/GameType';
 
 type Props = {
-  gameType: GameType;
+  gameType: GameTypeEnum;
 };
 
 export default function CreatePackForm({ gameType }: Props) {
   const {
     dictionary: {
       pages: { workshop: workshopDictionary },
+      localization: localizationDictionary,
     },
   } = useLocalization();
   const router = useRouter();
@@ -29,6 +31,17 @@ export default function CreatePackForm({ gameType }: Props) {
   const handleClickBack = () => {
     router.back();
   };
+
+  const languageOptions: IOption<LanguageEnum>[] = [
+    {
+      label: localizationDictionary[LanguageEnum.en],
+      value: LanguageEnum.en,
+    },
+    {
+      label: localizationDictionary[LanguageEnum.ru],
+      value: LanguageEnum.ru,
+    },
+  ];
 
   return (
     <form action={formAction}>
@@ -45,7 +58,7 @@ export default function CreatePackForm({ gameType }: Props) {
             </Field>
             <Field className="flex flex-col">
               <Label>Select language</Label>
-              <StyledSelect name="language" />
+              <StyledSelect name="language" options={languageOptions} />
             </Field>
             <Field className="flex flex-col">
               <Label>{workshopDictionary.createPackFieldDescription}</Label>
