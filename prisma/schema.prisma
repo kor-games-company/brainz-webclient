@@ -1,0 +1,290 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+// AUTHJS MODELS
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String  @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+ 
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@map("sessions")
+}
+ 
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+ 
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+
+  // custom references
+  profile DbUserProfile?
+
+  moderationOperations DbGamePackModerationOperation[]
+
+  packs DbGamePack[]
+  rooms DbGameRoom[]
+ 
+  @@map("users")
+}
+
+// USER MANAGEMENT MODELS
+
+enum DbLanguage {
+  en
+  ru
+
+  @@map("language")
+}
+
+enum DbTheme {
+  dark
+  light
+
+  @@map("theme")
+}
+
+enum DbUserRole {
+  admin
+  moderator
+  user
+
+  @@map("user_role")
+}
+
+model DbUserProfile {
+  userId String @id @map("user_id")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  role DbUserRole
+
+  preferredLanguage DbLanguage @map("preferred_language")
+  preferredTheme DbTheme @map("preferred_theme")
+
+  imageBlobKey String? @map("image_blob") @db.VarChar(32)
+  imageAssetsPath String? @map("image_assets") @db.VarChar(256)
+
+  @@map("users_profiles")
+}
+
+// DOMAIN DB MODELS
+
+enum DbGameType {
+  slots
+  quiz
+  territory
+
+	@@map("game_type")
+}
+
+model DbGamePack {
+  id String @id @db.VarChar(64)
+  
+  name String @db.VarChar(64)
+  description String @db.VarChar(1024)
+
+  gameType DbGameType @map("game_type")
+  language DbLanguage
+
+  imageBlobKey String? @map("image_blob") @db.VarChar(32)
+  imageAssetsPath String? @map("image_assets") @db.VarChar(256)
+
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+
+  userId String @map("user_id")
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  rooms DbGameRoom[]
+
+  moderationResult DbGamePackModerationOperation?
+  slotsPack DbSlotsPack?
+
+  @@index([userId])
+  @@index([gameType])
+  @@map("game_packs")
+}
+
+enum DbModerationOperationStatus {
+  requested
+  approved
+  denied
+
+  @@map("moderation_result_status")
+}
+
+enum DbAgeRestriction {
+  everyone6plus @map("everyone_6plus")
+  teen12plus @map("teen_12plus")
+  mature16plus @map("mature_16plus")
+  adults18plus @map("adults_18plus")
+
+  @@map("age_restiction")
+}
+
+model DbGamePackModerationOperation {
+  packId String @id @map("pack_id")
+  pack DbGamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  status DbModerationOperationStatus
+  ageRestriction DbAgeRestriction @map("age_restriction")
+
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+
+  moderatorId String? @map("moderator_id")
+  moderator User? @relation(fields: [moderatorId], references: [id], onDelete: SetNull)
+
+  @@map("game_pack_moderation_operations")
+}
+
+model DbGameRoom {
+  id String @id @db.VarChar(64)
+  server String @db.VarChar(64)
+  code String @unique @db.VarChar(32)
+  isPublic Boolean @map("is_public")
+  name String @db.VarChar(64)
+  description String @db.VarChar(512)
+  
+  imageBlobKey String? @map("image_blob") @db.VarChar(32)
+  imageAssetsPath String? @map("image_assets") @db.VarChar(256)
+
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+
+  ownerId String @map("owner_id")
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  packId String @map("pack_id")
+  pack DbGamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  @@index([code])
+  @@index([isPublic])
+	@@map("game_rooms")
+}
+
+// SLOTS GAME
+
+model DbSlotsPack {
+  packId String @id @map("pack_id")
+  pack DbGamePack @relation(fields: [packId], references: [id], onDelete: Cascade)
+
+  stages DbSlotsStage[]
+
+  @@map("slots_packs")
+}
+
+model DbSlotsStage {
+  id String @id @db.VarChar(64)
+  number Int
+  name String @db.VarChar(64)
+  description String @db.VarChar(256)
+  
+  imageBlobKey String? @map("image_blob") @db.VarChar(32)
+
+  packId String @map("pack_id")
+  pack DbSlotsPack @relation(fields: [packId], references: [packId], onDelete: Cascade)
+
+  topics DbSlotsTopic[]
+
+  @@index([packId])
+  @@map("slots_stages")
+}
+
+model DbSlotsTopic {
+  id String @id @db.VarChar(64)
+  number Int
+  name String @db.VarChar(64)
+
+  stageId String @map("stage_id")
+  stage DbSlotsStage @relation(fields: [stageId], references: [id], onDelete: Cascade)
+
+  questions DbSlotsQuestion[]
+
+  @@index([stageId])
+  @@map("slots_topics")
+}
+
+enum DbSlotsQuestionType {
+  text
+  image
+  audio
+  video
+
+	@@map("slots_question_type")
+}
+
+model DbSlotsQuestion {
+  id String @id @db.VarChar(64)
+  type DbSlotsQuestionType
+  points Int
+  title String @db.VarChar(64)
+
+  topicId String @map("topic_id")
+  topic DbSlotsTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  textQuestion DbSlotsTextQuestion?
+  blobQuestion DbSlotsBlobQuestion?
+
+  @@index([topicId])
+  @@map("slots_questions")
+}
+
+model DbSlotsTextQuestion {
+  questionId String @id @map("question_id")
+  question DbSlotsQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  text String @db.VarChar(512)
+
+  @@map("slots_content_questions")
+}
+
+model DbSlotsBlobQuestion {
+  questionId String @id @map("question_id")
+  question DbSlotsQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  blobKey String @map("blob_key") @db.VarChar(64)
+
+  @@map("slots_blob_questions")
+}
